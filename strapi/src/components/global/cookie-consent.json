@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_global_cookie_consents",
+  "info": {
+    "displayName": "CookieConsent",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "accept_button": {
+      "type": "string"
+    },
+    "decline_button": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

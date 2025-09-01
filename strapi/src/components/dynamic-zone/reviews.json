@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_dynamic_zone_reviews",
+  "info": {
+    "displayName": "Reviews",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "review_items": {
+      "type": "component",
+      "component": "dynamic-zone.review-items",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_shared_video_popups",
+  "info": {
+    "displayName": "Video Popup",
+    "icon": "play"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files",
+        "videos"
+      ]
+    }
+  },
+  "config": {}
+}

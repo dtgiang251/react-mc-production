@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_dynamic_zone_text_contents",
+  "info": {
+    "displayName": "Text Content"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

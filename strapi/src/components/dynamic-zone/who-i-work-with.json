@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_dynamic_zone_who_i_work_withs",
+  "info": {
+    "displayName": "Who I Work With",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "icon_box": {
+      "type": "component",
+      "component": "items.icon-box",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

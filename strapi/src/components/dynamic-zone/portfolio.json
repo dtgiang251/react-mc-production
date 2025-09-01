@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_dynamic_zone_portfolios",
+  "info": {
+    "displayName": "Portfolio",
+    "icon": "landscape"
+  },
+  "options": {},
+  "attributes": {
+    "Slider_Item": {
+      "type": "component",
+      "component": "global.portfolio-slider",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

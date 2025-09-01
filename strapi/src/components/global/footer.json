@@ -1,0 +1,79 @@
+{
+  "collectionName": "components_global_footers",
+  "info": {
+    "displayName": "Footer",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "contact_title": {
+      "type": "string"
+    },
+    "contact_description": {
+      "type": "text"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::logo.logo"
+    },
+    "copyright": {
+      "type": "text"
+    },
+    "designed_developed_by": {
+      "type": "text"
+    },
+    "social": {
+      "type": "component",
+      "component": "global.social-links",
+      "repeatable": true
+    },
+    "booking_title": {
+      "type": "string"
+    },
+    "name_label": {
+      "type": "string"
+    },
+    "services_label": {
+      "type": "string"
+    },
+    "services": {
+      "type": "component",
+      "component": "global.services",
+      "repeatable": true
+    },
+    "email_label": {
+      "type": "string"
+    },
+    "phone_label": {
+      "type": "string"
+    },
+    "message_label": {
+      "type": "string"
+    },
+    "message_note": {
+      "type": "string"
+    },
+    "accent_primary": {
+      "type": "text"
+    },
+    "submit_label": {
+      "type": "string"
+    },
+    "form_message": {
+      "type": "component",
+      "component": "global.messages",
+      "repeatable": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_dynamic_zone_pricings",
+  "info": {
+    "displayName": "Pricing",
+    "icon": "shoppingCart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "plans": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::plan.plan"
+    }
+  }
+}

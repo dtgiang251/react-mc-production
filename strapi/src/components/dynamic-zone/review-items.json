@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_dynamic_zone_review_items",
+  "info": {
+    "displayName": "Review Items"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "review_content": {
+      "type": "text"
+    },
+    "social_text": {
+      "type": "string"
+    },
+    "social_link": {
+      "type": "string"
+    },
+    "stars": {
+      "type": "integer",
+      "default": 5,
+      "min": 0,
+      "max": 5
+    }
+  },
+  "config": {}
+}

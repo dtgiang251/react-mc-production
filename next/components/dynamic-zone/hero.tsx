@@ -1,0 +1,160 @@
+"use client";
+import React, { useState, useRef } from "react";
+import { Button } from "../elements/button";
+import { HtmlParser } from "../html-parser";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
+import Link from "next/link";
+import { SvgLoader } from '@/components/svg-loader';
+import { strapiImage } from '@/lib/strapi/strapiImage';
+import { useFooterData } from '@/context/FooterContext';
+import { BookingForm } from "../booking-form";
+
+export const Hero = ({ 
+  heading, 
+  sub_heading, 
+  button_text, 
+  button_link, 
+  form_title, 
+  background,
+}: { 
+  heading: string; 
+  sub_heading: string; 
+  button_text: string; 
+  button_link: string; 
+  form_title: string; 
+  background: any[];
+}) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const sliderRef = useRef<Slider | null>(null);
+  const footerData = useFooterData();
+
+  const settings = {
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    fade: true,
+    beforeChange: (current: number, next: number) => setCurrentSlide(next),
+  };
+
+  const isInternalLink = (link: string) => {
+    return link.startsWith('/') || link.startsWith('#');
+  };
+
+  return (
+    <div className="relative h-[100%] lg:h-screen pt-[160px] pb-10 sm:pb-25">
+      {/* Background Slider */}
+      <div className="absolute inset-0 w-full h-full">
+        <Slider ref={sliderRef} {...settings} className="h-full">
+          {background && background.map((image, index) => (
+            image.url ? (
+              <div key={index} className="relative w-full h-full">
+                <Image
+                  src={strapiImage(image.url)}
+                  alt={image.alternativeText || ''}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                />
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+            ) : null
+          ))}
+        </Slider>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 xl:px-20 h-full flex flex-col md:flex-row items-center gap-10 lg:gap-15">
+        <div className="relative flex flex-col md:w-1/2 xl:pl-25">
+          <h1 className="text-[50px] sm:text-[66px] lg:text-[78px] leading-none font-bold relative pb-6 text-white text-center md:text-left">
+            {heading}
+          </h1>
+          <div className="hero-desc mt-2 md:mt-6 text-[28px] leading-none font-medium text-white relative text-center md:text-left">
+            <HtmlParser html={sub_heading || ''} />
+          </div>
+          <div className="space-x-2 items-center mt-10 hidden md:flex">
+            {button_text && (
+              isInternalLink(button_link) ? (
+                <Link href={button_link} passHref>
+                  <Button as="span">
+                    {button_text}
+                  </Button>
+                </Link>
+              ) : (
+                <Button as="a" href={button_link}>
+                  {button_text}
+                </Button>
+              )
+            )}
+          </div>
+          
+          <div className="hero-dots flex gap-5 mt-12 items-center justify-center md:justify-start">
+            {background && background.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => sliderRef.current?.slickGoTo(index)}
+                className={`w-[27px] h-[27px] border  rounded-full transition-all duration-300  ${
+                  currentSlide === index ? 'opacity-100 border-white/70' : 'opacity-80 border-transparent'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          
+          {footerData?.social && footerData.social.length > 0 && (
+            <div className="social-links absolute left-4 top-1/2 -translate-y-1/2 z-20 flex-col gap-8 hidden xl:flex">
+              <div className="w-[2px] h-[150px] bg-white mx-auto"></div>
+              <div className="flex flex-col gap-5">
+                {footerData.social.map((item: any) => (
+                  <a 
+                    key={item.id} 
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-5 h-5 flex items-center justify-center opacity-70 hover:opacity-100"
+                  >
+                    {item.icon && (
+                      item.icon.url.endsWith('.svg') ? (
+                        <SvgLoader 
+                          url={strapiImage(item.icon.url)}
+                          className="w-5 h-5"
+                        />
+                      ) : (
+                        <Image 
+                          src={strapiImage(item.icon.url)} 
+                          alt={item.icon.name} 
+                          width={20}
+                          height={20}
+                          className="w-5 h-5"
+                        />
+                      )
+                    )}
+                  </a>
+                ))}
+              </div>
+              <div className="w-[2px] h-[150px] bg-white mx-auto"></div>
+            </div>
+          )}
+
+        </div>
+        <div className="flex flex-col md:w-1/2">
+          <div className="bg-white p-5 sm:p-[24px] lg:p-[34px] rounded-[10px] border border-gray-200">
+            <h3 className="text-[34px] lg:text-[40px] leading-tight text-secondary font-bold mb-8">{form_title}</h3>
+            <BookingForm 
+              data={footerData}
+              className="hero-booking"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};

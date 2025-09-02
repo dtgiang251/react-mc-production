@@ -1,0 +1,434 @@
+[
+  {
+    "id": 1,
+    "text": "Pricing",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 5,
+    "text": "FAQ",
+    "url": "http://localhost:3000/#faqs",
+    "target": null
+  },
+  {
+    "id": 7,
+    "text": "Book Now",
+    "url": "#booking",
+    "target": null
+  },
+  {
+    "id": 8,
+    "text": "Pricing",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 9,
+    "text": "Blog",
+    "url": "/blog",
+    "target": null
+  },
+  {
+    "id": 10,
+    "text": "Products",
+    "url": "/products",
+    "target": null
+  },
+  {
+    "id": 11,
+    "text": "FAQ",
+    "url": "/faq",
+    "target": null
+  },
+  {
+    "id": 12,
+    "text": "Contact",
+    "url": "/contact",
+    "target": null
+  },
+  {
+    "id": 13,
+    "text": "Sign up",
+    "url": "/sign-up",
+    "target": null
+  },
+  {
+    "id": 14,
+    "text": "Privacy Policy",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 15,
+    "text": "Terms of Service",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 16,
+    "text": "Refund Policy",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 17,
+    "text": "X",
+    "url": "https://x.com/strapijs",
+    "target": "_blank"
+  },
+  {
+    "id": 18,
+    "text": "LinkedIn",
+    "url": "https://linkedin.com/strapi",
+    "target": "_blank"
+  },
+  {
+    "id": 19,
+    "text": "GitHub",
+    "url": "https://github.com/strapi/launchpad",
+    "target": "_blank"
+  },
+  {
+    "id": 26,
+    "text": "Réservez maintenant",
+    "url": "#booking",
+    "target": null
+  },
+  {
+    "id": 27,
+    "text": "Tarifs",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 28,
+    "text": "Blog",
+    "url": "/blog",
+    "target": null
+  },
+  {
+    "id": 29,
+    "text": "Produits",
+    "url": "/products",
+    "target": null
+  },
+  {
+    "id": 30,
+    "text": "FAQ",
+    "url": "/faq",
+    "target": null
+  },
+  {
+    "id": 31,
+    "text": "Contact",
+    "url": "/contact",
+    "target": null
+  },
+  {
+    "id": 32,
+    "text": "Inscription",
+    "url": "/sign-up",
+    "target": null
+  },
+  {
+    "id": 33,
+    "text": "Politique de confidentialité",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 34,
+    "text": "Conditions d'utilisation",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 35,
+    "text": "Politique de remboursement",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 36,
+    "text": "X",
+    "url": "https://x.com/strapijs",
+    "target": "_blank"
+  },
+  {
+    "id": 37,
+    "text": "LinkedIn",
+    "url": "https://linkedin.com/strapi",
+    "target": "_blank"
+  },
+  {
+    "id": 38,
+    "text": "GitHub",
+    "url": "https://github.com/strapi/launchpad",
+    "target": "_blank"
+  },
+  {
+    "id": 65,
+    "text": "Tarifs",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 66,
+    "text": "Blog",
+    "url": "/blog",
+    "target": null
+  },
+  {
+    "id": 67,
+    "text": "Produits",
+    "url": "/products",
+    "target": null
+  },
+  {
+    "id": 68,
+    "text": "FAQ",
+    "url": "/faq",
+    "target": null
+  },
+  {
+    "id": 69,
+    "text": "Contact",
+    "url": "/contact",
+    "target": null
+  },
+  {
+    "id": 70,
+    "text": "Inscription",
+    "url": "/sign-up",
+    "target": null
+  },
+  {
+    "id": 71,
+    "text": "Politique de confidentialité",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 72,
+    "text": "Conditions d'utilisation",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 73,
+    "text": "Politique de remboursement",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 74,
+    "text": "X",
+    "url": "https://x.com/strapijs",
+    "target": "_blank"
+  },
+  {
+    "id": 75,
+    "text": "LinkedIn",
+    "url": "https://linkedin.com/strapi",
+    "target": "_blank"
+  },
+  {
+    "id": 76,
+    "text": "GitHub",
+    "url": "https://github.com/strapi/launchpad",
+    "target": "_blank"
+  },
+  {
+    "id": 83,
+    "text": "Pricing",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 84,
+    "text": "Blog",
+    "url": "/blog",
+    "target": null
+  },
+  {
+    "id": 85,
+    "text": "Products",
+    "url": "/products",
+    "target": null
+  },
+  {
+    "id": 86,
+    "text": "FAQ",
+    "url": "/faq",
+    "target": null
+  },
+  {
+    "id": 87,
+    "text": "Contact",
+    "url": "/contact",
+    "target": null
+  },
+  {
+    "id": 88,
+    "text": "Sign up",
+    "url": "/sign-up",
+    "target": null
+  },
+  {
+    "id": 89,
+    "text": "Privacy Policy",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 90,
+    "text": "Terms of Service",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 91,
+    "text": "Refund Policy",
+    "url": "/",
+    "target": null
+  },
+  {
+    "id": 92,
+    "text": "X",
+    "url": "https://x.com/strapijs",
+    "target": "_blank"
+  },
+  {
+    "id": 93,
+    "text": "LinkedIn",
+    "url": "https://linkedin.com/strapi",
+    "target": "_blank"
+  },
+  {
+    "id": 94,
+    "text": "GitHub",
+    "url": "https://github.com/strapi/launchpad",
+    "target": "_blank"
+  },
+  {
+    "id": 231,
+    "text": "Services",
+    "url": "/services",
+    "target": null
+  },
+  {
+    "id": 240,
+    "text": "About",
+    "url": "http://localhost:3000/#about",
+    "target": null
+  },
+  {
+    "id": 241,
+    "text": "Portfolio",
+    "url": "http://localhost:3000/#portfolio",
+    "target": null
+  },
+  {
+    "id": 242,
+    "text": "About",
+    "url": "http://localhost:3000/#about",
+    "target": null
+  },
+  {
+    "id": 243,
+    "text": "Portfolio",
+    "url": "http://localhost:3000/#portfolio",
+    "target": null
+  },
+  {
+    "id": 244,
+    "text": "Services",
+    "url": "/services",
+    "target": null
+  },
+  {
+    "id": 245,
+    "text": "Pricing",
+    "url": "/pricing",
+    "target": null
+  },
+  {
+    "id": 246,
+    "text": "FAQ",
+    "url": "http://localhost:3000/#faqs",
+    "target": null
+  },
+  {
+    "id": 247,
+    "text": "Book Now",
+    "url": "#booking",
+    "target": null
+  },
+  {
+    "id": 248,
+    "text": "À propos",
+    "url": "http://localhost:3000/fr/#about",
+    "target": null
+  },
+  {
+    "id": 249,
+    "text": "Portfolio",
+    "url": "http://localhost:3000/fr/#portfolio",
+    "target": null
+  },
+  {
+    "id": 250,
+    "text": "Services",
+    "url": "/fr/services",
+    "target": null
+  },
+  {
+    "id": 251,
+    "text": "Tarifs",
+    "url": "/fr/pricing",
+    "target": null
+  },
+  {
+    "id": 252,
+    "text": "FAQ",
+    "url": "http://localhost:3000/fr#faqs",
+    "target": null
+  },
+  {
+    "id": 287,
+    "text": "À propos",
+    "url": "http://localhost:3000/fr/#about",
+    "target": null
+  },
+  {
+    "id": 288,
+    "text": "Portfolio",
+    "url": "http://localhost:3000/fr/#portfolio",
+    "target": null
+  },
+  {
+    "id": 289,
+    "text": "Services",
+    "url": "/fr/services",
+    "target": null
+  },
+  {
+    "id": 290,
+    "text": "Tarifs",
+    "url": "/fr/pricing",
+    "target": null
+  },
+  {
+    "id": 291,
+    "text": "FAQ",
+    "url": "http://localhost:3000/fr#faqs",
+    "target": null
+  },
+  {
+    "id": 292,
+    "text": "Réservez maintenant",
+    "url": "#booking",
+    "target": null
+  }
+]

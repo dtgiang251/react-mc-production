@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "required_fields": "Please fill in all required fields",
+    "invalid_email": "Please enter a valid email address",
+    "submit_success": "Form submitted successfully!",
+    "submit_error": "Failed to submit form. Please try again."
+  },
+  {
+    "id": 16,
+    "required_fields": "Please fill in all required fields",
+    "invalid_email": "Please enter a valid email address",
+    "submit_success": "Form submitted successfully!",
+    "submit_error": "Failed to submit form. Please try again."
+  },
+  {
+    "id": 17,
+    "required_fields": "Veuillez remplir tous les champs obligatoires",
+    "invalid_email": "S'il vous plaît, mettez une adresse email valide",
+    "submit_success": "Formulaire soumis avec succès!",
+    "submit_error": "Échec de l'envoi du formulaire. Veuillez réessayer."
+  },
+  {
+    "id": 18,
+    "required_fields": "Veuillez remplir tous les champs obligatoires",
+    "invalid_email": "S'il vous plaît, mettez une adresse email valide",
+    "submit_success": "Formulaire soumis avec succès!",
+    "submit_error": "Échec de l'envoi du formulaire. Veuillez réessayer."
+  }
+]

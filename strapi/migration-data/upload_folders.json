@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "document_id": "xbd0ec1lkgfcx3z3vcuaebd7",
+    "name": "logos",
+    "path_id": 1,
+    "path": "/1",
+    "created_at": 1723050703945,
+    "updated_at": 1723050703945,
+    "published_at": 1723050703945,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": null
+  },
+  {
+    "id": 2,
+    "document_id": "ngo3iqty47bbidgcyl17rusy",
+    "name": "users",
+    "path_id": 2,
+    "path": "/2",
+    "created_at": 1723050761472,
+    "updated_at": 1723050761472,
+    "published_at": 1723050761472,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": null
+  },
+  {
+    "id": 4,
+    "document_id": "ie1neljm31z4vg539w0iji1p",
+    "name": "Icons",
+    "path_id": 4,
+    "path": "/4",
+    "created_at": 1754473816558,
+    "updated_at": 1754473816558,
+    "published_at": 1754473816559,
+    "created_by_id": 1,
+    "updated_by_id": 1,
+    "locale": null
+  },
+  {
+    "id": 5,
+    "document_id": "saw0dem878izfod3eteuygem",
+    "name": "videos",
+    "path_id": 5,
+    "path": "/5",
+    "created_at": 1755074847306,
+    "updated_at": 1755074918181,
+    "published_at": 1755074847307,
+    "created_by_id": 1,
+    "updated_by_id": 1,
+    "locale": null
+  },
+  {
+    "id": 6,
+    "document_id": "fu85yld7pqp5cwown7276ted",
+    "name": "Portfolio",
+    "path_id": 6,
+    "path": "/6",
+    "created_at": 1755227141849,
+    "updated_at": 1755227141849,
+    "published_at": 1755227141849,
+    "created_by_id": 1,
+    "updated_by_id": 1,
+    "locale": null
+  },
+  {
+    "id": 7,
+    "document_id": "mtid2j4dij5bcte0mejpxeml",
+    "name": "1",
+    "path_id": 7,
+    "path": "/6/7",
+    "created_at": 1755227149021,
+    "updated_at": 1755227149021,
+    "published_at": 1755227149021,
+    "created_by_id": 1,
+    "updated_by_id": 1,
+    "locale": null
+  },
+  {
+    "id": 8,
+    "document_id": "luew8j3iakwp7cn0cpx5s5er",
+    "name": "2",
+    "path_id": 8,
+    "path": "/6/8",
+    "created_at": 1755228420204,
+    "updated_at": 1755228420204,
+    "published_at": 1755228420204,
+    "created_by_id": 1,
+    "updated_by_id": 1,
+    "locale": null
+  }
+]

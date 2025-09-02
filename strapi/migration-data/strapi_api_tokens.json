@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "document_id": "w01ibjmf3w4t1ucugiopbuy0",
+    "name": "Read Only",
+    "description": "A default API token with read-only permissions, only used for accessing resources",
+    "type": "read-only",
+    "access_key": "25770d7728abdd43ec4a06b962f4e1c4a425cf0f80675410d544e9a5cc4d7e7a39c02c9d91a6cb2b9fac7570ed983d3ec5b58ccd6bc585cf5b59992dc5cfaf13",
+    "encrypted_key": null,
+    "last_used_at": null,
+    "expires_at": null,
+    "lifespan": null,
+    "created_at": 1752460481212,
+    "updated_at": 1752460481212,
+    "published_at": 1752460481212,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": null
+  },
+  {
+    "id": 2,
+    "document_id": "fl6jcwkrqx7iqbq9fstbz9mv",
+    "name": "Full Access",
+    "description": "A default API token with full access permissions, used for accessing or modifying resources",
+    "type": "full-access",
+    "access_key": "b1f05bf84b30124c40567bc676b966f086697353c3a4d55ad784dbf2b168844527d5d5b3f6b9cefec0e227514b6c4175d89a4b5ec3bd1cde3817cfce08af3733",
+    "encrypted_key": null,
+    "last_used_at": null,
+    "expires_at": null,
+    "lifespan": null,
+    "created_at": 1752460481342,
+    "updated_at": 1752460481342,
+    "published_at": 1752460481342,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": null
+  }
+]

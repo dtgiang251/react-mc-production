@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "document_id": "sh1bp9l7x3nnqvw3s05fgz6p",
+    "firstname": "Giang",
+    "lastname": "Duong",
+    "username": null,
+    "email": "giang251@gmail.com",
+    "password": "$2a$10$IUAyGiBC6CwycHRVcHUO7eA7HqmYHYjhkwWRpEZihGzJL0h0GBT9a",
+    "reset_password_token": null,
+    "registration_token": null,
+    "is_active": 1,
+    "blocked": 0,
+    "prefered_language": null,
+    "created_at": 1752464641287,
+    "updated_at": 1752464641287,
+    "published_at": 1752464641288,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": null
+  }
+]

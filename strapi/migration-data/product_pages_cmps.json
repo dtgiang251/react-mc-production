@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "entity_id": 1,
+    "cmp_id": 23,
+    "component_type": "shared.seo",
+    "field": "seo",
+    "order": null
+  },
+  {
+    "id": 2,
+    "entity_id": 2,
+    "cmp_id": 24,
+    "component_type": "shared.seo",
+    "field": "seo",
+    "order": null
+  }
+]

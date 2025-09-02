@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "related_articles_id": 1,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 2,
+    "related_articles_id": 1,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 3,
+    "related_articles_id": 2,
+    "article_id": 1,
+    "article_ord": 1
+  },
+  {
+    "id": 4,
+    "related_articles_id": 2,
+    "article_id": 3,
+    "article_ord": 2
+  },
+  {
+    "id": 5,
+    "related_articles_id": 6,
+    "article_id": 13,
+    "article_ord": 1
+  },
+  {
+    "id": 6,
+    "related_articles_id": 6,
+    "article_id": 11,
+    "article_ord": 2
+  },
+  {
+    "id": 9,
+    "related_articles_id": 8,
+    "article_id": 4,
+    "article_ord": 0
+  },
+  {
+    "id": 10,
+    "related_articles_id": 8,
+    "article_id": 5,
+    "article_ord": 1
+  },
+  {
+    "id": 11,
+    "related_articles_id": 9,
+    "article_id": 10,
+    "article_ord": 1
+  },
+  {
+    "id": 12,
+    "related_articles_id": 9,
+    "article_id": 12,
+    "article_ord": 2
+  },
+  {
+    "id": 13,
+    "related_articles_id": 4,
+    "article_id": 8,
+    "article_ord": 1
+  },
+  {
+    "id": 14,
+    "related_articles_id": 4,
+    "article_id": 5,
+    "article_ord": 2
+  },
+  {
+    "id": 15,
+    "related_articles_id": 10,
+    "article_id": 9,
+    "article_ord": 1
+  },
+  {
+    "id": 16,
+    "related_articles_id": 10,
+    "article_id": 12,
+    "article_ord": 2
+  },
+  {
+    "id": 17,
+    "related_articles_id": 3,
+    "article_id": 2,
+    "article_ord": 0
+  },
+  {
+    "id": 18,
+    "related_articles_id": 11,
+    "article_id": 6,
+    "article_ord": 1
+  },
+  {
+    "id": 19,
+    "related_articles_id": 5,
+    "article_id": 4,
+    "article_ord": 1
+  },
+  {
+    "id": 20,
+    "related_articles_id": 5,
+    "article_id": 8,
+    "article_ord": 2
+  },
+  {
+    "id": 21,
+    "related_articles_id": 12,
+    "article_id": 10,
+    "article_ord": 1
+  },
+  {
+    "id": 22,
+    "related_articles_id": 12,
+    "article_id": 9,
+    "article_ord": 2
+  },
+  {
+    "id": 23,
+    "related_articles_id": 13,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 24,
+    "related_articles_id": 13,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 25,
+    "related_articles_id": 2,
+    "article_id": 13,
+    "article_ord": 1
+  },
+  {
+    "id": 26,
+    "related_articles_id": 14,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 27,
+    "related_articles_id": 14,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 28,
+    "related_articles_id": 15,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 29,
+    "related_articles_id": 15,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 30,
+    "related_articles_id": 16,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 31,
+    "related_articles_id": 16,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 32,
+    "related_articles_id": 17,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 33,
+    "related_articles_id": 17,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 34,
+    "related_articles_id": 18,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 35,
+    "related_articles_id": 18,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 36,
+    "related_articles_id": 19,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 37,
+    "related_articles_id": 19,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 38,
+    "related_articles_id": 20,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 39,
+    "related_articles_id": 20,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 40,
+    "related_articles_id": 21,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 41,
+    "related_articles_id": 21,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 42,
+    "related_articles_id": 22,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 43,
+    "related_articles_id": 22,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 44,
+    "related_articles_id": 23,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 45,
+    "related_articles_id": 23,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 46,
+    "related_articles_id": 24,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 47,
+    "related_articles_id": 24,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 48,
+    "related_articles_id": 25,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 49,
+    "related_articles_id": 25,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 50,
+    "related_articles_id": 26,
+    "article_id": 1,
+    "article_ord": 1
+  },
+  {
+    "id": 51,
+    "related_articles_id": 26,
+    "article_id": 13,
+    "article_ord": 2
+  },
+  {
+    "id": 52,
+    "related_articles_id": 26,
+    "article_id": 3,
+    "article_ord": 3
+  },
+  {
+    "id": 53,
+    "related_articles_id": 27,
+    "article_id": 13,
+    "article_ord": 1
+  },
+  {
+    "id": 54,
+    "related_articles_id": 27,
+    "article_id": 11,
+    "article_ord": 2
+  },
+  {
+    "id": 55,
+    "related_articles_id": 28,
+    "article_id": 3,
+    "article_ord": 1
+  },
+  {
+    "id": 56,
+    "related_articles_id": 28,
+    "article_id": 2,
+    "article_ord": 2
+  },
+  {
+    "id": 57,
+    "related_articles_id": 29,
+    "article_id": 11,
+    "article_ord": 1
+  },
+  {
+    "id": 58,
+    "related_articles_id": 29,
+    "article_id": 6,
+    "article_ord": 2
+  },
+  {
+    "id": 59,
+    "related_articles_id": 30,
+    "article_id": 1,
+    "article_ord": 1
+  },
+  {
+    "id": 60,
+    "related_articles_id": 30,
+    "article_id": 13,
+    "article_ord": 2
+  },
+  {
+    "id": 61,
+    "related_articles_id": 30,
+    "article_id": 3,
+    "article_ord": 3
+  },
+  {
+    "id": 62,
+    "related_articles_id": 31,
+    "article_id": 13,
+    "article_ord": 1
+  },
+  {
+    "id": 63,
+    "related_articles_id": 31,
+    "article_id": 11,
+    "article_ord": 2
+  },
+  {
+    "id": 64,
+    "related_articles_id": 32,
+    "article_id": 2,
+    "article_ord": 1
+  },
+  {
+    "id": 65,
+    "related_articles_id": 33,
+    "article_id": 6,
+    "article_ord": 1
+  }
+]

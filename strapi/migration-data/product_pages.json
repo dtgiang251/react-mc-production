@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "document_id": "ur5trwmxxdld011d4kcn82kc",
+    "heading": "Products",
+    "sub_heading": "Buy products to supercharge your journey",
+    "created_at": 1725887140981,
+    "updated_at": 1726489734222,
+    "published_at": 1726489734203,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": "en"
+  },
+  {
+    "id": 2,
+    "document_id": "ur5trwmxxdld011d4kcn82kc",
+    "heading": "Produits",
+    "sub_heading": "Achetez des produits pour dynamiser votre experience",
+    "created_at": 1725975501527,
+    "updated_at": 1726490028406,
+    "published_at": 1726490028387,
+    "created_by_id": null,
+    "updated_by_id": null,
+    "locale": "fr"
+  }
+]

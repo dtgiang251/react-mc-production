@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "entity_id": 1,
+    "cmp_id": 1,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 1
+  },
+  {
+    "id": 10,
+    "entity_id": 1,
+    "cmp_id": 6,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 2
+  },
+  {
+    "id": 15,
+    "entity_id": 7,
+    "cmp_id": 9,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 1
+  },
+  {
+    "id": 16,
+    "entity_id": 7,
+    "cmp_id": 10,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 2
+  },
+  {
+    "id": 17,
+    "entity_id": 8,
+    "cmp_id": 11,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 1
+  },
+  {
+    "id": 18,
+    "entity_id": 8,
+    "cmp_id": 12,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 2
+  },
+  {
+    "id": 19,
+    "entity_id": 9,
+    "cmp_id": 13,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 1
+  },
+  {
+    "id": 20,
+    "entity_id": 9,
+    "cmp_id": 14,
+    "component_type": "global.portfolio-slider",
+    "field": "Slider_Item",
+    "order": 2
+  }
+]

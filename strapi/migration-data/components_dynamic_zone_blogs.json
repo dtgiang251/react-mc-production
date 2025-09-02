@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "layout": "Featured Posts",
+    "title": "Latest news & articles",
+    "description": "‘Marc’s Photos & Videos Set Us Apart’",
+    "button_text": "View all",
+    "button_link": "/blog"
+  },
+  {
+    "id": 7,
+    "layout": "Blog Posts and Pagination",
+    "title": null,
+    "description": null,
+    "button_text": null,
+    "button_link": null
+  },
+  {
+    "id": 37,
+    "layout": "Featured Posts",
+    "title": "Latest news & articles",
+    "description": "‘Marc’s Photos & Videos Set Us Apart’",
+    "button_text": "View all",
+    "button_link": "/blog"
+  },
+  {
+    "id": 38,
+    "layout": "Featured Posts",
+    "title": "Latest news & articles",
+    "description": "‘Marc’s Photos & Videos Set Us Apart’",
+    "button_text": "View all",
+    "button_link": "/blog"
+  },
+  {
+    "id": 39,
+    "layout": "Featured Posts",
+    "title": "Latest news & articles",
+    "description": "‘Marc’s Photos & Videos Set Us Apart’",
+    "button_text": "View all",
+    "button_link": "/blog"
+  }
+]

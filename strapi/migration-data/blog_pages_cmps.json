@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "entity_id": 1,
+    "cmp_id": 1,
+    "component_type": "shared.seo",
+    "field": "seo",
+    "order": null
+  },
+  {
+    "id": 2,
+    "entity_id": 2,
+    "cmp_id": 2,
+    "component_type": "shared.seo",
+    "field": "seo",
+    "order": null
+  },
+  {
+    "id": 5,
+    "entity_id": 1,
+    "cmp_id": 7,
+    "component_type": "dynamic-zone.blog",
+    "field": "dynamic_zone",
+    "order": 1
+  }
+]

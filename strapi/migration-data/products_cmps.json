@@ -1,0 +1,322 @@
+[
+  {
+    "id": 1,
+    "entity_id": 1,
+    "cmp_id": 55,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 2,
+    "entity_id": 1,
+    "cmp_id": 56,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 3,
+    "entity_id": 1,
+    "cmp_id": 57,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 4,
+    "entity_id": 1,
+    "cmp_id": 1,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 5,
+    "entity_id": 2,
+    "cmp_id": 58,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 6,
+    "entity_id": 2,
+    "cmp_id": 59,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 7,
+    "entity_id": 2,
+    "cmp_id": 60,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 8,
+    "entity_id": 2,
+    "cmp_id": 2,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 9,
+    "entity_id": 3,
+    "cmp_id": 61,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 10,
+    "entity_id": 3,
+    "cmp_id": 62,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 11,
+    "entity_id": 3,
+    "cmp_id": 63,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 12,
+    "entity_id": 3,
+    "cmp_id": 3,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 13,
+    "entity_id": 4,
+    "cmp_id": 64,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 14,
+    "entity_id": 4,
+    "cmp_id": 65,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 15,
+    "entity_id": 4,
+    "cmp_id": 66,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 16,
+    "entity_id": 4,
+    "cmp_id": 4,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 17,
+    "entity_id": 5,
+    "cmp_id": 67,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 18,
+    "entity_id": 5,
+    "cmp_id": 68,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 19,
+    "entity_id": 5,
+    "cmp_id": 69,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 20,
+    "entity_id": 5,
+    "cmp_id": 5,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 21,
+    "entity_id": 6,
+    "cmp_id": 70,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 22,
+    "entity_id": 6,
+    "cmp_id": 71,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 23,
+    "entity_id": 6,
+    "cmp_id": 72,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 24,
+    "entity_id": 6,
+    "cmp_id": 6,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 25,
+    "entity_id": 7,
+    "cmp_id": 73,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 26,
+    "entity_id": 7,
+    "cmp_id": 74,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 27,
+    "entity_id": 7,
+    "cmp_id": 75,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 28,
+    "entity_id": 7,
+    "cmp_id": 7,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 29,
+    "entity_id": 8,
+    "cmp_id": 76,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 30,
+    "entity_id": 8,
+    "cmp_id": 77,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 31,
+    "entity_id": 8,
+    "cmp_id": 78,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 32,
+    "entity_id": 8,
+    "cmp_id": 8,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 33,
+    "entity_id": 9,
+    "cmp_id": 79,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 34,
+    "entity_id": 9,
+    "cmp_id": 80,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 35,
+    "entity_id": 9,
+    "cmp_id": 81,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 36,
+    "entity_id": 9,
+    "cmp_id": 9,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  },
+  {
+    "id": 37,
+    "entity_id": 10,
+    "cmp_id": 82,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 1
+  },
+  {
+    "id": 38,
+    "entity_id": 10,
+    "cmp_id": 83,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 2
+  },
+  {
+    "id": 39,
+    "entity_id": 10,
+    "cmp_id": 84,
+    "component_type": "shared.perks",
+    "field": "perks",
+    "order": 3
+  },
+  {
+    "id": 40,
+    "entity_id": 10,
+    "cmp_id": 10,
+    "component_type": "dynamic-zone.related-products",
+    "field": "dynamic_zone",
+    "order": 1
+  }
+]

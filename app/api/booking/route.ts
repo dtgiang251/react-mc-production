@@ -11,6 +11,7 @@ export async function POST(request: Request) {
     // Lấy translations (bạn có thể điều chỉnh locale nếu cần)
     // const { t } = await getTranslations('fr', "email");
 
+    
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),

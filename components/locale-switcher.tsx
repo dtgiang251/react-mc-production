@@ -85,7 +85,7 @@ export function LocaleSwitcher({
       </div>
 
       {isOpen && !pathname.includes("/products/") && (
-        <div className="absolute top-full left-0 z-10 pt-3">
+        <div className="absolute top-full left-0 z-10 pt-3 flex flex-col gap-3">
           {Object.keys(localizedSlugs)
             .filter((locale) => locale !== currentLocale)
             .map((locale) => (

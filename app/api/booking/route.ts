@@ -8,21 +8,19 @@ export async function POST(request: Request) {
     const formData = await request.json();
     const currentYear = new Date().getFullYear();
 
-
-    
     // Lấy translations (bạn có thể điều chỉnh locale nếu cần)
     // const { t } = await getTranslations('fr', "email");
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
-      secure: false,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
       tls: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: false,
       },
     });
 
@@ -31,7 +29,6 @@ export async function POST(request: Request) {
     nextimmo: process.env.NEXTIMMO_EMAIL
     };
 
-    
     // HTML cho email người dùng
     const userEmailHtml = `
     <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; border-radius: 8px;">

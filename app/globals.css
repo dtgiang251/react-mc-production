@@ -48,13 +48,13 @@ body {
 }
 
 .checkbox-wrap span:before {
-    @apply content-[''] absolute -left-[26px] top-1/2 -mt-2 w-[16px] h-[16px] rounded-sm;
-    background: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><rect x="0.5" y="0.5" width="15" height="15" rx="1.5" stroke="%231B2431"/></g></svg>');
+    @apply content-[''] absolute -left-[26px] top-1/2 -mt-2 w-[16px] h-[17px] rounded-sm;
+    background: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><rect x="0.5" y="1.39941" width="15" height="15" rx="1.5" stroke="white"/></g></svg>');
 }
 
 .checkbox-wrap input:checked + span:before {
     @apply border-0;
-    background: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><rect x="0.5" y="0.5" width="15" height="15" rx="1.5" stroke="%231B2431"/><path d="M12.2069 4.793C12.3944 4.98053 12.4997 5.23484 12.4997 5.5C12.4997 5.76516 12.3944 6.01947 12.2069 6.207L7.20692 11.207C7.01939 11.3945 6.76508 11.4998 6.49992 11.4998C6.23475 11.4998 5.98045 11.3945 5.79292 11.207L3.79292 9.207C3.61076 9.0184 3.50997 8.7658 3.51224 8.5036C3.51452 8.2414 3.61969 7.99059 3.8051 7.80518C3.99051 7.61977 4.24132 7.5146 4.50352 7.51233C4.76571 7.51005 5.01832 7.61084 5.20692 7.793L6.49992 9.086L10.7929 4.793C10.9804 4.60553 11.2348 4.50021 11.4999 4.50021C11.7651 4.50021 12.0194 4.60553 12.2069 4.793Z" fill="%231B2431"/></g></svg>');
+    background: url('data:image/svg+xml,<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><rect x="0.5" y="1.39941" width="15" height="15" rx="1.5" stroke="white"/><path d="M12.2069 5.6922C12.3944 5.87973 12.4997 6.13404 12.4997 6.3992C12.4997 6.66436 12.3944 6.91867 12.2069 7.1062L7.20692 12.1062C7.01939 12.2937 6.76508 12.399 6.49992 12.399C6.23475 12.399 5.98045 12.2937 5.79292 12.1062L3.79292 10.1062C3.61076 9.9176 3.50997 9.665 3.51224 9.4028C3.51452 9.1406 3.61969 8.88979 3.8051 8.70438C3.99051 8.51897 4.24132 8.4138 4.50352 8.41153C4.76571 8.40925 5.01832 8.51004 5.20692 8.6922L6.49992 9.9852L10.7929 5.6922C10.9804 5.50473 11.2348 5.39941 11.4999 5.39941C11.7651 5.39941 12.0194 5.50473 12.2069 5.6922Z" fill="white"/></g></svg>');
 }
 
 .mobile-menu a {
@@ -123,6 +123,7 @@ body {
 }
 
 .hero-booking.booking-form .checkbox-wrap span:before {
+  @apply h-[16px];
   background: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.6"><rect x="0.5" y="0.5" width="15" height="15" rx="1.5" stroke="%231B2431"/></g></svg>');
 }
 

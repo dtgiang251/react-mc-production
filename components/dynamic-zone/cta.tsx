@@ -36,7 +36,7 @@ export const CTA = ({ heading, sub_heading, CTAs, layout = "Full CTA" }: { headi
       ) : (
         <Container className="flex flex-col md:flex-row justify-between items-center w-full py-30">
           <div className="flex flex-col md:flex-row gap-5 lg:gap-25">
-            <div className="w-full md:w-[calc(100%-250px)]">
+            <div className="w-full md:w-[calc(100%-300px)]">
               <h2 className="text-[34px] leading-[40px] w-full lg:w-[95%] md:text-5xl md:leading-[55px] font-bold mb-0 text-primary">
                 {heading}
               </h2>
@@ -44,7 +44,7 @@ export const CTA = ({ heading, sub_heading, CTAs, layout = "Full CTA" }: { headi
               <p className="font-normal text-white text-base leading-relaxed mb-5 lg:mb-10">{sub_heading}</p>
               )}
             </div>
-            <div className="w-full md:w-[250px] flex items-center justify-center">
+            <div className="w-full md:w-[300px] flex items-center justify-center">
               {CTAs && CTAs.map((cta, index) => (
                 <Button as={Link} key={index} href={`/${cta.URL}`} variant={cta.variant}>
                   {cta.text}

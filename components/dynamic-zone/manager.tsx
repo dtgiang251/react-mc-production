@@ -27,7 +27,6 @@ const componentMapping: { [key: string]: any } = {
   'dynamic-zone.booking': dynamic(() => import('./booking').then(mod => mod.Booking), { ssr: false }),
   'dynamic-zone.features': dynamic(() => import('./features').then(mod => mod.Features), { ssr: false }),
   'dynamic-zone.testimonials': dynamic(() => import('./testimonials').then(mod => mod.Testimonials), { ssr: false }),
-  'dynamic-zone.how-it-works': dynamic(() => import('./how-it-works').then(mod => mod.HowItWorks), { ssr: false }),
   'dynamic-zone.brands': dynamic(() => import('./brands').then(mod => mod.Brands), { ssr: false }),
   'dynamic-zone.pricing': dynamic(() => import('./pricing').then(mod => mod.Pricing), { ssr: false }),
   'dynamic-zone.launches': dynamic(() => import('./launches').then(mod => mod.Launches), { ssr: false }),

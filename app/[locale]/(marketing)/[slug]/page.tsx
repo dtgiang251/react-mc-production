@@ -4,7 +4,6 @@ import fetchContentType from '@/lib/strapi/fetchContentType';
 import { generateMetadataObject } from '@/lib/shared/metadata';
 import ClientSlugHandler from '../ClientSlugHandler';
 import { strapiImage } from '@/lib/strapi/strapiImage';
-import Image from "next/image";
 
 export async function generateMetadata({
   params,
@@ -40,21 +39,22 @@ export default async function Page({ params }: { params: { locale: string, slug:
     true,
   );
 
-  const localizedSlugs = pageData.localizations?.reduce(
+  const localizedSlugs = pageData?.localizations?.reduce(
     (acc: Record<string, string>, localization: any) => {
       acc[localization.locale] = localization.slug;
       return acc;
     },
     { [params.locale]: params.slug }
-  );
+  ) || { [params.locale]: params.slug };
+
   return (
     <>
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
-      {pageData.banner_background ? (
+      {pageData?.banner_background ? (
         <div 
           className="banner relative z-20 px-5 pb-20 pt-[160px] w-full flex flex-col items-center justify-center text-white"
           style={{ 
-            backgroundImage: pageData.banner_background ? 
+            backgroundImage: pageData?.banner_background ? 
               `url(${strapiImage(pageData.banner_background.url)})` : 
               'none',
             backgroundSize: 'cover',

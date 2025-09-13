@@ -11,7 +11,6 @@ import {
   CardTitle,
 } from "./card";
 import { IconRocket } from "@tabler/icons-react";
-import { SkeletonOne } from "./skeletons/first";
 import { SkeletonTwo } from "./skeletons/second";
 import { SkeletonThree } from "./skeletons/third";
 import { SkeletonFour } from "./skeletons/fourth";
@@ -45,9 +44,6 @@ export const Features = ({ heading, sub_heading, globe_card, ray_card, graph_car
               <CardDescription>
                 {globe_card.description}
               </CardDescription>
-              <CardSkeletonContainer>
-                <SkeletonOne />
-              </CardSkeletonContainer>
             </Card>
           )}
 

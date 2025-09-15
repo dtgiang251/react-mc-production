@@ -27,7 +27,19 @@ export function LocaleSwitcher({
   const generateLocalizedPath = (locale: string): string => {
     if (!pathname) return `/${locale}`; // Default to root path for the locale
 
-    // Special handling for /blog route
+    // Blog detail page: /[locale]/blog/[slug] or /blog/[slug]
+    const isBlogDetail =
+      (segments[1] === "blog" && segments.length === 3) || // /blog/[slug]
+      (i18n.locales.includes(segments[1] as any) && segments[2] === "blog" && segments.length === 4); // /[locale]/blog/[slug]
+
+    if (isBlogDetail && localizedSlugs[locale]) {
+      // Always format as /[locale]/blog/[localized-slug]
+      return locale === i18n.defaultLocale
+        ? `/blog/${localizedSlugs[locale]}`
+        : `/${locale}/blog/${localizedSlugs[locale]}`;
+    }
+
+    // Special handling for /blog route (blog index)
     if (pathname === '/blog' || segments[2] === 'blog') {
       return locale === i18n.defaultLocale ? '/blog' : `/${locale}/blog`;
     }
@@ -37,7 +49,7 @@ export function LocaleSwitcher({
       return locale === i18n.defaultLocale ? '/' : `/${locale}`;
     }
 
-    // Handle dynamic paths (e.g., "/en/blog/[slug]")
+    // Handle dynamic paths (e.g., "/en/[something]")
     if (localizedSlugs[locale]) {
       segments[1] = locale; // Replace the locale
       segments[segments.length - 1] = localizedSlugs[locale]; // Replace slug if available

@@ -32,11 +32,17 @@ export function LocaleSwitcher({
       (segments[1] === "blog" && segments.length === 3) || // /blog/[slug]
       (i18n.locales.includes(segments[1] as any) && segments[2] === "blog" && segments.length === 4); // /[locale]/blog/[slug]
 
-    if (isBlogDetail && localizedSlugs[locale]) {
-      // Always format as /[locale]/blog/[localized-slug]
+    if (isBlogDetail) {
+      // Fallback: nếu không có localizedSlugs[locale], dùng slug của defaultLocale hoặc currentLocale
+      const fallbackSlug =
+        localizedSlugs[locale] ||
+        localizedSlugs[i18n.defaultLocale] ||
+        localizedSlugs[currentLocale] ||
+        segments[segments.length - 1]; // fallback cuối cùng là slug hiện tại
+
       return locale === i18n.defaultLocale
-        ? `/blog/${localizedSlugs[locale]}`
-        : `/${locale}/blog/${localizedSlugs[locale]}`;
+        ? `/blog/${fallbackSlug}`
+        : `/${locale}/blog/${fallbackSlug}`;
     }
 
     // Special handling for /blog route (blog index)

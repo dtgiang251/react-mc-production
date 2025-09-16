@@ -39,7 +39,7 @@ export default async function SingleArticlePage({
   );
 
   if (!article) {
-    return <div>Blog not found</div>;
+    return <div>Blog not found!</div>;
   }
 
   const localizedSlugs = article.localizations?.reduce(

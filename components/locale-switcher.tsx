@@ -22,11 +22,22 @@ export function LocaleSwitcher({
 
   const pathname = usePathname(); // Current path
   const segments = pathname.split("/"); // Split path into segments
+console.log("LocaleSwitcher pathname:", localizedSlugs); // Thêm dòng này để kiểm tra giá trị
 
   // Generate localized path for each locale
   const generateLocalizedPath = (locale: string): string => {
     if (!pathname) return `/${locale}`; // Default to root path for the locale
 
+    if (
+      Object.keys(localizedSlugs).length > 0 &&
+      localizedSlugs[locale] &&
+      segments.length === 2
+    ) {
+      return locale === i18n.defaultLocale
+        ? `/${localizedSlugs[locale]}`
+        : `/${locale}/${localizedSlugs[locale]}`;
+    }
+    
     // Blog detail page: /[locale]/blog/[slug] or /blog/[slug]
     const isBlogDetail =
       (segments[1] === "blog" && segments.length === 3) || // /blog/[slug]

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { Button } from "@/components/elements/button";
 
 export const BookingForm = ({ 
   data,
@@ -143,13 +144,14 @@ export const BookingForm = ({
           </label>
         </div>
 
-        <button
+        <Button
           type="submit"
+          variant="primary"
           disabled={loading}
-          className="bg-primary hover:bg-[#C4AD94] hover:text-white border-x border-b border-t-0 border-solid border-primary2 relative z-10 text-black text-base md:text-sm transition font-bold duration-200 rounded-full px-11 py-4 flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF60_inset,_0px_1px_0px_0px_#FFFFFF60_inset]"
+          className="hover:text-white relative z-10 text-black text-base md:text-sm transition font-bold duration-200 px-11 py-4 flex items-center justify-center"
         >
           {loading ? 'Submitting...' : data?.submit_label}
-        </button>
+        </Button>
       </div>
     </form>
   );

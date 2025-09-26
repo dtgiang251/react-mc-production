@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
       : variant === "outline"
       ? "bg-white relative z-10 hover:bg-secondary/90 hover:shadow-xl  text-black border border-black hover:text-black text-sm md:text-sm transition font-medium duration-200  rounded-md px-4 py-2  flex items-center justify-center"
       : variant === "primary"
-      ? "bg-primary hover:bg-primary2 hover:text-white border-x border-b border-t-0 border-solid border-primary2 relative z-10 text-black text-base md:text-sm transition font-bold duration-200  rounded-full px-11 py-4 flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF60_inset,_0px_1px_0px_0px_#FFFFFF60_inset  hover:-translate-y-1 active:-translate-y-0"
+      ? "bg-primary hover:bg-[#C4AD94] hover:text-white border-x border-b border-t-0 border-solid border-primary2 relative z-10 text-black text-base md:text-sm transition font-bold duration-200  rounded-full px-11 py-4 flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF60_inset,_0px_1px_0px_0px_#FFFFFF60_inset"
       : variant === "muted"
       ? "bg-neutral-800 relative z-10 hover:bg-neutral-900  border border-transparent text-white text-sm md:text-sm transition font-medium duration-200  rounded-md px-4 py-2  flex items-center justify-center shadow-[0px_1px_0px_0px_#FFFFFF20_inset]"
       : "";

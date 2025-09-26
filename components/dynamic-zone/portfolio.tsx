@@ -50,7 +50,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         <p className="font-inter font-normal text-base text-white mt-8">{item.description}</p>
                       </div>
                       <div className="col-span-12 md:col-span-4 text-center md:text-right lg:text-left lg:col-span-12">
-                        <Link href={item.button.URL} className="inline-block place-self-start bg-primary hover:bg-primary2 hover:text-white border-x border-b border-t-0 border-solid border-[#7A6752] relative z-10 text-black text-base md:text-sm transition font-bold duration-200 rounded-full px-11 py-4 items-center justify-center shadow-[0px_-1px_0px0px#FFFFFF60_inset,_0px_1px_0px0px#FFFFFF60_inset] hover:-translate-y-1 active:-translate-y-0 mt-0 lg:mt-10">
+                        <Link href={item.button.URL} className="inline-block place-self-start bg-primary hover:bg-[#C4AD94] hover:text-white border-x border-b border-t-0 border-solid border-[#7A6752] relative z-10 text-black text-base md:text-sm transition font-bold duration-200 rounded-full px-11 py-4 items-center justify-center shadow-[0px_-1px_0px0px#FFFFFF60_inset,_0px_1px_0px0px#FFFFFF60_inset] mt-0 lg:mt-10">
                           {item.button.text}
                         </Link>
                         <a href={item.bottom_content_link} className="font-inter font-semibold text-base text-primary hover:text-white mt-4 transition duration-200 block">{item.bottom_content}</a>

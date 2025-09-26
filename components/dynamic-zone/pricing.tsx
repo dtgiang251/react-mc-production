@@ -122,9 +122,9 @@ const Card = ({ plan }: { plan: Plan; }) => {
           )}
 
         <Button
-          variant="outline"
+          variant="primary"
           className={cn(
-            "w-full mt-[18px] rounded-[40px] py-[9px] bg-primary hover:bg-primary2 border-none hover:text-white"
+            "w-full mt-[18px] border-none"
           )}
           as="a" href={plan.CTA?.URL || "#" }
         >

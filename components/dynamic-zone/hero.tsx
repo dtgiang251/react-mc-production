@@ -11,6 +11,10 @@ import { SvgLoader } from '@/components/svg-loader';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import { useFooterData } from '@/context/FooterContext';
 import { BookingForm } from "../booking-form";
+import { translations } from '@/translations/common';
+import { useParams } from 'next/navigation';
+import { i18n } from "@/i18n.config";
+import { Locale } from '@/translations/types';
 
 export const Hero = ({ 
   heading, 
@@ -28,8 +32,11 @@ export const Hero = ({
   background: any[];
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showMobileForm, setShowMobileForm] = useState(false);
   const sliderRef = useRef<Slider | null>(null);
   const footerData = useFooterData();
+  const params = useParams();
+  const currentLocale = (params?.locale as Locale) || (i18n.defaultLocale as Locale);
 
   const settings = {
     dots: false,
@@ -144,8 +151,40 @@ export const Hero = ({
             </div>
           )}
 
+          {/* Show Booking form on mobile */}
+          <div className="space-x-2 items-center justify-center mt-10 flex md:hidden">
+            <Button as="button" onClick={() => setShowMobileForm(true)}>
+              {translations[currentLocale]?.bookNow || translations[i18n.defaultLocale].bookNow}
+            </Button>
+          </div>
+
+          {/* Mobile Booking Form Modal */}
+          {showMobileForm && (
+            <div className="fixed inset-0 bg-black/50 z-50 md:hidden px-5">
+              <div className="bg-white p-5 rounded-[20px] max-h-[90vh] overflow-y-auto mt-30">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-[24px] leading-tight text-secondary font-bold">{form_title}</h3>
+                  <button 
+                    onClick={() => setShowMobileForm(false)}
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
+                  >
+                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.43934 6.43934C7.02513 5.85355 7.97487 5.85355 8.56066 6.43934L15 12.8787L21.4393 6.43934C22.0251 5.85355 22.9749 5.85355 23.5607 6.43934C24.1464 7.02513 24.1464 7.97487 23.5607 8.56066L17.1213 15L23.5607 21.4393C24.1464 22.0251 24.1464 22.9749 23.5607 23.5607C22.9749 24.1464 22.0251 24.1464 21.4393 23.5607L15 17.1213L8.56066 23.5607C7.97487 24.1464 7.02513 24.1464 6.43934 23.5607C5.85355 22.9749 5.85355 22.0251 6.43934 21.4393L12.8787 15L6.43934 8.56066C5.85355 7.97487 5.85355 7.02513 6.43934 6.43934Z" fill="#171C28"/>
+                    </svg>
+
+                  </button>
+                </div>
+                <BookingForm 
+                  data={footerData}
+                  className="hero-booking"
+                />
+              </div>
+            </div>
+          )}
+
         </div>
-        <div className="flex flex-col md:w-1/2">
+        {/*  Booking form */}
+        <div className="hidden md:flex flex-col md:w-1/2">
           <div className="bg-white p-5 sm:p-[24px] lg:p-[34px] rounded-[10px] border border-gray-200">
             <h3 className="text-[34px] lg:text-[40px] leading-tight text-secondary font-bold mb-8">{form_title}</h3>
             <BookingForm 

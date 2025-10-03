@@ -22,7 +22,6 @@ export function LocaleSwitcher({
 
   const pathname = usePathname(); // Current path
   const segments = pathname.split("/"); // Split path into segments
-console.log("LocaleSwitcher pathname:", localizedSlugs); // Thêm dòng này để kiểm tra giá trị
 
   // Generate localized path for each locale
   const generateLocalizedPath = (locale: string): string => {

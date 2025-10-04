@@ -11,31 +11,48 @@ export const BookingForm = ({
   className?: string;
 }) => {
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     service: '',
     message: '',
-    agreement: false
+    agreement: true
   });
+
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = data.form_message?.required_fields || 'This field is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = data.form_message?.required_fields || 'This field is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = data.form_message?.invalid_email || 'Invalid email format';
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = data.form_message?.required_fields || 'This field is required';
+    }
+    
+    if (!formData.service) {
+      newErrors.service = data.form_message?.required_fields || 'This field is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate required fields
-    if (!formData.name || !formData.email || !formData.phone || !formData.service) {
-      alert(data.form_message.required_fields);
+    if (!validateForm()) {
       return;
     }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert(data.form_message.invalid_email);
-      return;
-    }
-
+    
     try {
       setLoading(true);
       const response = await fetch('/api/booking', {
@@ -57,7 +74,7 @@ export const BookingForm = ({
         phone: '',
         service: '',
         message: '',
-        agreement: false
+        agreement: true
       });
       
       alert(data.form_message.submit_success);
@@ -69,61 +86,94 @@ export const BookingForm = ({
     }
   };
 
+  const handleInputChange = (field: string, value: string | boolean) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className={`booking-form text-sm ${className || ''}`}>
       <h3 className="text-xl font-semibold mb-4 leading-none text-gray">{data?.booking_title}</h3>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6 mb-6">
         <div>
-        <label className="text-gray-300">{data?.name_label}
-          <input
-            type="text"
-            required
-            className="w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none"
-            value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
-          /></label>
+          <label className="text-gray-300">{data?.name_label}
+            <input
+              type="text"
+              className={`w-full mt-1 px-2 py-3 text-base leading-[18px] rounded-lg bg-transparent border ${
+                errors.name ? 'border-red-500' : 'border-gray-300'
+              } outline-none`}
+              value={formData.name}
+              onChange={(e) => handleInputChange('name', e.target.value)}
+            />
+          </label>
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+          )}
         </div>
         <div>
-        <label className="text-gray-300">{data?.services_label}
-          <select 
-            className="w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none"
-            value={formData.service}
-            onChange={(e) => setFormData({...formData, service: e.target.value})}
-          >
-            {data?.services?.map((service: any) => (
-              <option className="text-black" key={service.service_name} value={service.service_name}>
-                {service.service_name}
-              </option>
-            ))}
-          </select></label>
+          <label className="text-gray-300">{data?.services_label}
+            <select 
+              className={`w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border ${
+                errors.service ? 'border-red-500' : 'border-gray-300'
+              } outline-none`}
+              value={formData.service}
+              onChange={(e) => handleInputChange('service', e.target.value)}
+            >
+              <option value="">Select a service</option>
+              {data?.services?.map((service: any) => (
+                <option className="text-black" key={service.service_name} value={service.service_name}>
+                  {service.service_name}
+                </option>
+              ))}
+            </select>
+          </label>
+          {errors.service && (
+            <p className="text-red-500 text-xs mt-1">{errors.service}</p>
+          )}
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6 mb-6">
-        <label className="text-gray-300">{data?.email_label}
-        <input
-          type="email"
-          required
-          className="w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none"
-          value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
-        />
-        </label>
-        <label className="text-gray-300">{data?.phone_label}
-        <input
-          type="text"
-          className="w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none"
-          value={formData.phone}
-          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-        />
-        </label>
+        <div>
+          <label className="text-gray-300">{data?.email_label}
+            <input
+              type="email"
+              className={`w-full mt-1 px-2 py-3 text-base leading-[18px] rounded-lg bg-transparent border ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              } outline-none`}
+              value={formData.email}
+              onChange={(e) => handleInputChange('email', e.target.value)}
+            />
+          </label>
+          {errors.email && (
+            <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+          )}
+        </div>
+        <div>
+          <label className="text-gray-300">{data?.phone_label}
+            <input
+              type="text"
+              className={`w-full mt-1 px-2 py-3 text-base leading-[18px] rounded-lg bg-transparent border ${
+                errors.phone ? 'border-red-500' : 'border-gray-300'
+              } outline-none`}
+              value={formData.phone}
+              onChange={(e) => handleInputChange('phone', e.target.value)}
+            />
+          </label>
+          {errors.phone && (
+            <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+          )}
+        </div>
       </div>
 
       <div className="mb-6 message">
         <label className="text-gray-300">{data?.message_label}
         <textarea
-          className="w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none min-h-[150px]"
+          className="w-full mt-1 px-2 py-3 text-base leading-[18px] rounded-lg bg-transparent border border-gray-300 outline-none min-h-[150px]"
           value={formData.message}
           onChange={(e) => setFormData({...formData, message: e.target.value})}
         />
@@ -135,9 +185,9 @@ export const BookingForm = ({
           <label className="checkbox-wrap text-xs leading-[14px] opacity-60">
             <input
               type="checkbox"
+              checked={formData.agreement}
               required
               className="mt-1"
-              checked={formData.agreement}
               onChange={(e) => setFormData({...formData, agreement: e.target.checked})}
             />
             <span>{data?.accent_primary}</span>

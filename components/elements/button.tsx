@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <Tag
       className={cn(
-        "bg-secondary relative z-10 bg-transparent text-white text-sm md:text-sm transition font-medium duration-200  rounded-md px-10 py-2 flex items-center justify-center ",
+        "bg-secondary w-full sm:w-auto relative z-10 bg-transparent text-white text-sm md:text-sm transition font-medium duration-200  rounded-md px-10 py-2 flex items-center justify-center ",
         variantClass,
         className
       )}

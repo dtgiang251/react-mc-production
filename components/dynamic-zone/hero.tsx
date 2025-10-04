@@ -15,6 +15,7 @@ import { translations } from '@/translations/common';
 import { useParams } from 'next/navigation';
 import { i18n } from "@/i18n.config";
 import { Locale } from '@/translations/types';
+import { useScrollLock } from '@/hooks/useScrollLock';
 
 export const Hero = ({ 
   heading, 
@@ -55,6 +56,8 @@ export const Hero = ({
     return link.startsWith('/') || link.startsWith('#');
   };
 
+  useScrollLock(showMobileForm);
+  
   return (
     <div className="relative h-[100%] lg:h-screen pt-[160px] pb-10 sm:pb-25">
       {/* Background Slider */}

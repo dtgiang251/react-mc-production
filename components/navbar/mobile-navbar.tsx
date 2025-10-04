@@ -11,6 +11,7 @@ import { strapiImage } from "@/lib/strapi/strapiImage";
 import { SvgLoader } from '@/components/svg-loader';
 import { i18n } from "@/i18n.config";
 import Image from 'next/image';
+import { useScrollLock } from '@/hooks/useScrollLock';
 
 type Props = {
   leftNavbarItems: {
@@ -46,6 +47,8 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
   const getLocalizedHref = (path: string) => {
     return `${locale === i18n.defaultLocale ? '' : `/${locale}`}${path}`;
   };
+
+  useScrollLock(open);
 
   return (
     <div

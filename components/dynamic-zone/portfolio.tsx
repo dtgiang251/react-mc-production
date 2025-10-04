@@ -2,8 +2,8 @@
 import { Container } from "@/components/container";
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
-import Link from 'next/link';
 import Slider from "react-slick";
+import { Button } from "@/components/elements/button";
 import { useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -50,9 +50,9 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         <p className="font-inter font-normal text-base text-white mt-8">{item.description}</p>
                       </div>
                       <div className="col-span-12 md:col-span-4 text-center md:text-right lg:text-left lg:col-span-12">
-                        <Link href={item.button.URL} className="inline-block place-self-start bg-primary hover:bg-[#C4AD94] hover:text-white relative z-10 text-black text-base md:text-sm transition font-bold duration-200 rounded-[12px] px-11 py-4 items-center justify-center shadow-[0px_2px_4px_rgba(0,0,0,0.15)] mt-0 lg:mt-10">
+                        <Button as="a" href={item.button.URL} className="inline-block w-full sm:w-auto place-self-start bg-primary hover:bg-[#C4AD94] hover:text-white relative z-10 text-black text-base md:text-sm transition font-bold duration-200 rounded-[12px] px-11 py-4 items-center justify-center shadow-[0px_2px_4px_rgba(0,0,0,0.15)] mt-0 lg:mt-10">
                           {item.button.text}
-                        </Link>
+                        </Button>
                         <a href={item.bottom_content_link} className="font-inter font-semibold text-base text-primary hover:text-white mt-4 transition duration-200 block">{item.bottom_content}</a>
                       </div>
                     </div>

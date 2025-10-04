@@ -195,9 +195,7 @@ export const Blog = ({
         {button_text && (
           <div className="flex md:hidden justify-center mt-8">
             {isInternalLink(button_link) ? (
-              <Link href={button_link} passHref>
-                <Button as="span">{button_text}</Button>
-              </Link>
+              <Button href={button_link} as="a">{button_text}</Button>
             ) : (
               <Button as="a" href={button_link}>{button_text}</Button>
             )}

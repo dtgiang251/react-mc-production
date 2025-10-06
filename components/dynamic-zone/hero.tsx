@@ -59,7 +59,7 @@ export const Hero = ({
   useScrollLock(showMobileForm);
   
   return (
-    <div className="relative h-[100%] lg:h-screen pt-[160px] pb-10 sm:pb-25">
+    <div className="relative h-[100%] md:min-h-[800px] lg:h-screen pt-[160px] pb-10 sm:pb-25">
       {/* Background Slider */}
       <div className="absolute inset-0 w-full h-full">
         <Slider ref={sliderRef} {...settings} className="h-full">
@@ -161,7 +161,7 @@ export const Hero = ({
             </Button>
           </div>
 
-          <div className="flex items-center justify-center mt-5">
+          <div className="md:hidden flex items-center justify-center mt-5">
             <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="1" y="0.5" width="15" height="15" rx="1.5" stroke="white"/>
 <path d="M12.7069 4.793C12.8944 4.98053 12.9997 5.23484 12.9997 5.5C12.9997 5.76516 12.8944 6.01947 12.7069 6.207L7.70692 11.207C7.51939 11.3945 7.26508 11.4998 6.99992 11.4998C6.73475 11.4998 6.48045 11.3945 6.29292 11.207L4.29292 9.207C4.11076 9.0184 4.00997 8.7658 4.01224 8.5036C4.01452 8.2414 4.11969 7.99059 4.3051 7.80518C4.49051 7.61977 4.74132 7.5146 5.00352 7.51233C5.26571 7.51005 5.51832 7.61084 5.70692 7.793L6.99992 9.086L11.2929 4.793C11.4804 4.60553 11.7348 4.50021 11.9999 4.50021C12.2651 4.50021 12.5194 4.60553 12.7069 4.793Z" fill="white"/>

@@ -2,6 +2,10 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/elements/button";
+import { translations } from '@/translations/common';
+import { useParams } from 'next/navigation';
+import { i18n } from "@/i18n.config";
+import { Locale } from '@/translations/types';
 
 export const BookingForm = ({ 
   data,
@@ -10,6 +14,8 @@ export const BookingForm = ({
   data: any;
   className?: string;
 }) => {
+  const params = useParams();
+  const currentLocale = (params?.locale as Locale) || (i18n.defaultLocale as Locale);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
   const [formData, setFormData] = useState({
@@ -123,7 +129,7 @@ export const BookingForm = ({
               value={formData.service}
               onChange={(e) => handleInputChange('service', e.target.value)}
             >
-              <option value="">Select a service</option>
+              <option value="">{translations[currentLocale]?.selectService || translations[i18n.defaultLocale].selectService}</option>
               {data?.services?.map((service: any) => (
                 <option className="text-black" key={service.service_name} value={service.service_name}>
                   {service.service_name}

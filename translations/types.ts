@@ -1,6 +1,7 @@
 export type Locale = 'en' | 'fr' | 'de';
 
 export type TranslationKeys = {
+  selectService: string;
   bookNow: string;
   callback: string;
 };

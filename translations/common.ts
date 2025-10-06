@@ -1,4 +1,4 @@
-import { Translations } from './types';
+import { Translations } from './types'; 
 
 export const translations: Translations = {
   en: {
@@ -12,7 +12,7 @@ export const translations: Translations = {
     callback: "Vous préférez être rappelé ?"
   },
   de: {
-    selectService: "Dienstleistung auswählen",
+    selectService: "Dienstleistung auswählen", 
     bookNow: "Buchen Sie Ihr Fotoshooting",
     callback: "Möchten Sie zurückgerufen werden?"
   }

@@ -73,6 +73,10 @@ body {
   @apply stroke-primary2;
 }
 
+.header-social-links svg g path {
+  @apply stroke-none;
+}
+
 .footer-main a:hover {
   @apply text-primary;
 }

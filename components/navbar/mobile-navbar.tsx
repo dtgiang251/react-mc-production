@@ -128,6 +128,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
                 variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} 
                 as={Link} 
                 href={getLocalizedHref(item.URL)}
+                onClick={() => setOpen(false)}
               >
                 {item.text}
               </Button>

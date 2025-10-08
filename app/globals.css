@@ -174,3 +174,7 @@ body {
 .intro p:last-child {
   @apply mb-0;
 }
+
+.social-links svg g path {
+    fill: #fff;
+}

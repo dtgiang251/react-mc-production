@@ -10,12 +10,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 // Helper to get YouTube embed URL from normal URL
 const getYoutubeEmbedUrl = (url: string) => {
-  // Parse videoId and start time
+  // Parse videoId và start time (nếu có)
   const match = url.match(/v=([^&]+)(?:.*?t=(\d+)s?)?/);
   if (!match) return "";
   const videoId = match[1];
-  const start = match[2] ? `?start=${match[2]}` : "";
-  return `https://www.youtube.com/embed/${videoId}${start}&autoplay=1`;
+  const start = match[2] ? `start=${match[2]}` : "";
+  // Tạo query string đúng chuẩn
+  const params = [start, "autoplay=1"].filter(Boolean).join("&");
+  return `https://www.youtube.com/embed/${videoId}${params ? "?" + params : ""}`;
 };
 
 export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {

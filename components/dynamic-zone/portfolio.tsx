@@ -34,8 +34,8 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
       "https://www.youtube.com/watch?v=FJCDFbJOrHg"
     ],
     [
-      "https://www.youtube.com/watch?v=zq2a4Ccdgig",
-      "https://www.youtube.com/watch?v=sF3s7zaXZMU"
+      "https://www.youtube.com/watch?v=sF3s7zaXZMU",
+      "https://www.youtube.com/watch?v=zq2a4Ccdgig"
     ]
   ];
 

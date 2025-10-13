@@ -4,9 +4,19 @@ import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import Slider from "react-slick";
 import { Button } from "@/components/elements/button";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+// Helper to get YouTube embed URL from normal URL
+const getYoutubeEmbedUrl = (url: string) => {
+  // Parse videoId and start time
+  const match = url.match(/v=([^&]+)(?:.*?t=(\d+)s?)?/);
+  if (!match) return "";
+  const videoId = match[1];
+  const start = match[2] ? `?start=${match[2]}` : "";
+  return `https://www.youtube.com/embed/${videoId}${start}&autoplay=1`;
+};
 
 export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -14,6 +24,18 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
   const [showVideo1, setShowVideo1] = useState(false);
   const [showVideo2, setShowVideo2] = useState(false);
   const [currentVideo, setCurrentVideo] = useState<{url: string} | null>(null);
+
+  // Hardcode YouTube URLs for each slider/video
+  const youtubeVideos = [
+    [
+      "https://www.youtube.com/watch?v=0TCHGCIlLmw",
+      "https://www.youtube.com/watch?v=FJCDFbJOrHg"
+    ],
+    [
+      "https://www.youtube.com/watch?v=zq2a4Ccdgig",
+      "https://www.youtube.com/watch?v=sF3s7zaXZMU"
+    ]
+  ];
 
   const settings = {
     dots: false,
@@ -177,16 +199,17 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                             height={300}
                             className="w-full h-[300px] object-cover"
                           />
-                          {item.video2?.video?.url && (
                           <div className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                               onClick={() => {setShowVideo1(true); setCurrentVideo({url: item.video1.video.url})}}>
+                               onClick={() => {
+                                 setShowVideo1(true);
+                                 setCurrentVideo({ url: youtubeVideos[index][0] });
+                               }}>
                             <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="25.5" cy="25.8994" r="25" fill="white"/>
 <path d="M35.6562 24.5894C36.6979 25.1716 36.6979 26.6272 35.6562 27.2094L21.5937 35.0695C20.5521 35.6517 19.25 34.9239 19.25 33.7595L19.25 18.0393C19.25 16.8749 20.5521 16.1471 21.5938 16.7293L35.6562 24.5894Z" fill="#1B2431"/>
 </svg>
 
                           </div>
-                          )}
                         </div>
                       )}
                     </div>
@@ -200,16 +223,17 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                             height={300}
                             className="w-full h-[300px] object-cover"
                           />
-                          {item.video2?.video?.url && (
                           <div className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                               onClick={() => {setShowVideo2(true); setCurrentVideo({url: item.video2.video.url})}}>
+                               onClick={() => {
+                                 setShowVideo2(true);
+                                 setCurrentVideo({ url: youtubeVideos[index][1] });
+                               }}>
                             <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="25.5" cy="25.8994" r="25" fill="white"/>
 <path d="M35.6562 24.5894C36.6979 25.1716 36.6979 26.6272 35.6562 27.2094L21.5937 35.0695C20.5521 35.6517 19.25 34.9239 19.25 33.7595L19.25 18.0393C19.25 16.8749 20.5521 16.1471 21.5938 16.7293L35.6562 24.5894Z" fill="#1B2431"/>
 </svg>
 
                           </div>
-                          )}
                         </div>
                       )}
                     </div>
@@ -238,9 +262,13 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
             <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" 
                  onClick={() => setShowVideo1(false)}>
               <div className="relative w-full max-w-4xl aspect-video">
-                <video className="w-full h-full" controls autoPlay>
-                  <source src={strapiImage(currentVideo.url)} type="video/mp4" />
-                </video>
+                <iframe
+                  className="w-full h-full"
+                  src={getYoutubeEmbedUrl(currentVideo.url)}
+                  title="YouTube video player"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
                 <button 
                   onClick={() => setShowVideo1(false)}
                   className="absolute top-[-40px] right-0 text-white text-xl p-2"
@@ -253,9 +281,13 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
             <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" 
                  onClick={() => setShowVideo2(false)}>
               <div className="relative w-full max-w-4xl aspect-video">
-                <video className="w-full h-full" controls autoPlay>
-                  <source src={strapiImage(currentVideo.url)} type="video/mp4" />
-                </video>
+                <iframe
+                  className="w-full h-full"
+                  src={getYoutubeEmbedUrl(currentVideo.url)}
+                  title="YouTube video player"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
                 <button 
                   onClick={() => setShowVideo2(false)}
                   className="absolute top-[-40px] right-0 text-white text-xl p-2"
@@ -263,28 +295,6 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
               </div>
             </div>
           )}
-
-          {/* Preload hidden videos for faster popup */}
-          {Slider_Item.map((item, idx) => (
-            <React.Fragment key={idx}>
-              {item.video1?.video?.url && (
-                <video
-                  style={{ width: 0, height: 0, opacity: 0, position: 'absolute', pointerEvents: 'none' }}
-                  preload="auto"
-                >
-                  <source src={strapiImage(item.video1.video.url)} type="video/mp4" />
-                </video>
-              )}
-              {item.video2?.video?.url && (
-                <video
-                  style={{ width: 0, height: 0, opacity: 0, position: 'absolute', pointerEvents: 'none' }}
-                  preload="auto"
-                >
-                  <source src={strapiImage(item.video2.video.url)} type="video/mp4" />
-                </video>
-              )}
-            </React.Fragment>
-          ))}
         </Container>
       </section>
     </>

@@ -51,28 +51,17 @@ export const VideoAndTextSection = ({ title, content, image, video }: { title: s
           </div>
         </Container>
 
-        {/* Preload hidden video for faster popup */}
-        {video?.url && (
-          <video
-            style={{ width: 0, height: 0, opacity: 0, position: 'absolute', pointerEvents: 'none' }}
-            preload="auto"
-          >
-            <source src={strapiImage(video?.url)} type="video/mp4" />
-          </video>
-        )}
-
         {/* Video Popup */}
-        {showVideo && video?.url && (
+        {showVideo && (
           <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" onClick={() => setShowVideo(false)}>
             <div className="relative w-full max-w-4xl aspect-video">
-              <video
+              <iframe
                 className="w-full h-full"
-                controls
-                autoPlay
-              >
-                <source src={strapiImage(video?.url)} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+                src="https://www.youtube.com/embed/k_-d9e9c46s?autoplay=1"
+                title="YouTube video player"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              />
               <button 
                 onClick={() => setShowVideo(false)}
                 className="absolute top-[-40px] right-0 text-white text-xl p-2"

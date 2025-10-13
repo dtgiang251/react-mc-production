@@ -4,7 +4,7 @@ import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import Slider from "react-slick";
 import { Button } from "@/components/elements/button";
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -263,6 +263,28 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
               </div>
             </div>
           )}
+
+          {/* Preload hidden videos for faster popup */}
+          {Slider_Item.map((item, idx) => (
+            <React.Fragment key={idx}>
+              {item.video1?.video?.url && (
+                <video
+                  style={{ width: 0, height: 0, opacity: 0, position: 'absolute', pointerEvents: 'none' }}
+                  preload="auto"
+                >
+                  <source src={strapiImage(item.video1.video.url)} type="video/mp4" />
+                </video>
+              )}
+              {item.video2?.video?.url && (
+                <video
+                  style={{ width: 0, height: 0, opacity: 0, position: 'absolute', pointerEvents: 'none' }}
+                  preload="auto"
+                >
+                  <source src={strapiImage(item.video2.video.url)} type="video/mp4" />
+                </video>
+              )}
+            </React.Fragment>
+          ))}
         </Container>
       </section>
     </>

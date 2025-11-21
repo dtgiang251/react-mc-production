@@ -22,7 +22,7 @@ function getLocale(request: NextRequest): string {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-  
+
   // Allow static files
   if (PUBLIC_FILE.test(pathname) || STATIC_ROUTES.some(route => pathname.startsWith(route))) {
     return NextResponse.next()
@@ -41,8 +41,19 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  // For root path or paths without locale, internally rewrite to default locale
+  // Tự động redirect sang ngôn ngữ của trình duyệt khi truy cập lần đầu (chỉ khi không có locale trong URL)
   if (!i18n.locales.some(locale => pathname.startsWith(`/${locale}/`))) {
+    // Chỉ redirect nếu là truy cập lần đầu (pathname === '/')
+    if (pathname === '/') {
+      const detectedLocale = getLocale(request)
+      // Nếu locale phát hiện khác với defaultLocale thì redirect
+      if (detectedLocale && detectedLocale !== i18n.defaultLocale) {
+        const url = request.nextUrl.clone()
+        url.pathname = `/${detectedLocale}/`
+        return NextResponse.redirect(url)
+      }
+    }
+    // Nếu không phải truy cập lần đầu, rewrite như cũ
     const url = request.nextUrl.clone()
     url.pathname = `/${i18n.defaultLocale}${pathname === '/' ? '/' : pathname}`
     return NextResponse.rewrite(url)

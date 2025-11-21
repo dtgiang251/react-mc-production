@@ -28,7 +28,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // For root locale paths (e.g., /fr), append a trailing slash
   if (i18n.locales.some(locale => pathname === `/${locale}`)) {
     const url = request.nextUrl.clone()
     url.pathname = `${pathname}/`
@@ -54,7 +53,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  // Các path khác giữ nguyên, không tự động redirect/rewrite
   return NextResponse.next()
 }
 

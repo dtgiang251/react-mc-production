@@ -66,6 +66,8 @@ export default async function LocaleLayout({
     return (
         <html lang={currentLocale}>
             <head>
+                {/* Robots tag for Google indexing */}
+                <meta name="robots" content="index, follow" />
                 {/* Google tag (gtag.js) */}
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-HYTK9KVPTG"></script>
                 <script

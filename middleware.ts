@@ -28,11 +28,16 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Nếu là bot/crawler thì không redirect/rewrite, chỉ trả về trang mặc định
+  // Nếu là bot/crawler hoặc không có accept-language thì không redirect/rewrite, chỉ trả về trang mặc định
   const userAgent = request.headers.get('user-agent') || ''
+  const acceptLanguage = request.headers.get('accept-language')
   const isBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|sogou|exabot|facebot|ia_archiver/i.test(userAgent)
-  if (pathname === '/' && isBot) {
-    return NextResponse.next()
+  const isCrawler = isBot || !acceptLanguage
+  if (pathname === '/' && isCrawler) {
+    // Rewrite về trang mặc định thay vì next()
+    const url = request.nextUrl.clone()
+    url.pathname = `/${i18n.defaultLocale}/`
+    return NextResponse.rewrite(url)
   }
 
   if (i18n.locales.some(locale => pathname === `/${locale}`)) {
@@ -41,7 +46,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(url)
   }
 
-  // Chỉ redirect sang ngôn ngữ trình duyệt khi truy cập '/' lần đầu tiên (chưa có cookie lang_redirected)
+  // Redirect sang ngôn ngữ trình duyệt khi truy cập '/' lần đầu tiên (chưa có cookie lang_redirected)
   if (pathname === '/') {
     const redirected = request.cookies.get('lang_redirected')
     if (!redirected) {
@@ -50,11 +55,11 @@ export function middleware(request: NextRequest) {
         const url = request.nextUrl.clone()
         url.pathname = `/${detectedLocale}/`
         const response = NextResponse.redirect(url)
-        response.cookies.set('lang_redirected', '1', { path: '/', maxAge: 60 * 60 * 24 * 30 }) // 30 ngày
+        response.cookies.set('lang_redirected', '1', { path: '/', maxAge: 60 * 60 * 24 * 30 })
         return response
       }
     }
-    // Luôn rewrite về defaultLocale khi truy cập '/'
+    // Nếu không có trang gốc, rewrite về defaultLocale
     const url = request.nextUrl.clone()
     url.pathname = `/${i18n.defaultLocale}/`
     return NextResponse.rewrite(url)

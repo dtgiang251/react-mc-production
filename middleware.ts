@@ -28,6 +28,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // Nếu là bot/crawler thì không redirect/rewrite, chỉ trả về trang mặc định
+  const userAgent = request.headers.get('user-agent') || ''
+  const isBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|sogou|exabot|facebot|ia_archiver/i.test(userAgent)
+  if (pathname === '/' && isBot) {
+    return NextResponse.next()
+  }
+
   if (i18n.locales.some(locale => pathname === `/${locale}`)) {
     const url = request.nextUrl.clone()
     url.pathname = `${pathname}/`

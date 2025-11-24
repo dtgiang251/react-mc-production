@@ -25,6 +25,7 @@ export async function generateMetadata({
 }: {
     params: { locale: string; slug: string };
 }): Promise<Metadata> {
+
     const pageData = await fetchContentType(
         'global',
         {
@@ -58,10 +59,6 @@ export default async function LocaleLayout({
         accept: pageData?.cookie_consent?.accept_button || 'Accept',
         decline: pageData?.cookie_consent?.decline_button || 'Decline'
     };
-
-    if (!pageData) {
-        console.error('Failed to fetch global data');
-    }
 
     return (
         <html lang={currentLocale}>

@@ -22,46 +22,29 @@ function getLocale(request: NextRequest): string {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
-
+  
   // Allow static files
   if (PUBLIC_FILE.test(pathname) || STATIC_ROUTES.some(route => pathname.startsWith(route))) {
     return NextResponse.next()
   }
 
-  // Nếu là bot/crawler hoặc không có accept-language thì không redirect/rewrite, chỉ trả về trang mặc định
-  const userAgent = request.headers.get('user-agent') || ''
-  const acceptLanguage = request.headers.get('accept-language')
-  const isBot = /googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|sogou|exabot|facebot|ia_archiver/i.test(userAgent)
-  const isCrawler = isBot || !acceptLanguage
-  if (pathname === '/' && isCrawler) {
-    // Rewrite về trang mặc định thay vì next()
-    const url = request.nextUrl.clone()
-    url.pathname = `/${i18n.defaultLocale}/`
-    return NextResponse.rewrite(url)
+  // Handle default locale paths - redirect /en to /
+  if (pathname === `/${i18n.defaultLocale}` || pathname.startsWith(`/${i18n.defaultLocale}/`)) {
+    const newPathname = pathname.replace(`/${i18n.defaultLocale}`, '') || '/'
+    return NextResponse.redirect(new URL(newPathname, request.url))
   }
 
+  // For root locale paths (e.g., /fr), append a trailing slash
   if (i18n.locales.some(locale => pathname === `/${locale}`)) {
     const url = request.nextUrl.clone()
     url.pathname = `${pathname}/`
     return NextResponse.rewrite(url)
   }
 
-  // Redirect sang ngôn ngữ trình duyệt khi truy cập '/' lần đầu tiên (chưa có cookie lang_redirected)
-  if (pathname === '/') {
-    const redirected = request.cookies.get('lang_redirected')
-    if (!redirected) {
-      const detectedLocale = getLocale(request)
-      if (detectedLocale && detectedLocale !== i18n.defaultLocale) {
-        const url = request.nextUrl.clone()
-        url.pathname = `/${detectedLocale}/`
-        const response = NextResponse.redirect(url)
-        response.cookies.set('lang_redirected', '1', { path: '/', maxAge: 60 * 60 * 24 * 30 })
-        return response
-      }
-    }
-    // Nếu không có trang gốc, rewrite về defaultLocale
+  // For root path or paths without locale, internally rewrite to default locale
+  if (!i18n.locales.some(locale => pathname.startsWith(`/${locale}/`))) {
     const url = request.nextUrl.clone()
-    url.pathname = `/${i18n.defaultLocale}/`
+    url.pathname = `/${i18n.defaultLocale}${pathname === '/' ? '/' : pathname}`
     return NextResponse.rewrite(url)
   }
 

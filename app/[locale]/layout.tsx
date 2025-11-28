@@ -60,6 +60,8 @@ export default async function LocaleLayout({
         decline: pageData?.cookie_consent?.decline_button || 'Decline'
     };
 
+    console.log('pageData:', pageData);
+
     return (
         <html lang={currentLocale}>
             <head>

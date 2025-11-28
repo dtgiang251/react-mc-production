@@ -32,9 +32,7 @@ export async function POST(request: Request) {
     // HTML cho email người dùng
     const userEmailHtml = `
     <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; border-radius: 8px;">
-      <div style="display: inline-block;">
-        <img src="${process.env.NEXT_PUBLIC_BASEURL}/${formData.emailType}-logo.png" alt="Logo" style="width: 200px;" />
-      </div>
+      
       <h2 style="color: #B38E41;">Demande de propriété</h2>
       <p>Bonjour ${formData.name},</p>
       <p>Nous avons bien reçu votre demande d’estimation et nous vous en remercions. Un responsable vous contactera sous peu afin de vous proposer des créneaux disponibles pour la visite sur place. Voici le récapitulatif des informations concernant votre bien à estimer:</p>

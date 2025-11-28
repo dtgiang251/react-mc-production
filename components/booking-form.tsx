@@ -66,7 +66,10 @@ export const BookingForm = ({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          locale: currentLocale // truyền ngôn ngữ hiện tại vào API
+        }),
       });
 
       if (!response.ok) {

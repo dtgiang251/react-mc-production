@@ -20,12 +20,12 @@ const inter = Inter({
     weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+
 export async function generateMetadata({
     params,
 }: {
     params: { locale: string; slug: string };
 }): Promise<Metadata> {
-
     const pageData = await fetchContentType(
         'global',
         {
@@ -37,7 +37,22 @@ export async function generateMetadata({
 
     const seo = pageData?.seo;
     const metadata = generateMetadataObject(seo);
-    return metadata;
+    
+    return {
+        ...metadata,
+        icons: {
+            icon: [
+                { url: '/favicon.ico' },
+                { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+                { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+                { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+                { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+            ],
+            apple: [
+                { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+            ],
+        },
+    };
 }
 
 export const metadata: Metadata = {

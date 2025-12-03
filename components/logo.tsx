@@ -21,7 +21,7 @@ export const Logo = ({ image, locale, company, active }: { image?: Image, locale
           alt={image.alternativeText}
           width={200}
           height={200}
-          className="h-10 w-10 rounded-xl mr-2"
+          className="h-20 w-20 rounded-xl mr-2"
         />
         )}
 

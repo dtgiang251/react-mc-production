@@ -26,7 +26,7 @@ export const Booking = ({ title, description, CTA, background }: BookingProps) =
     <>
     <section className="bg-primary background-image-nc02-bk">
         <div className="relative max-w-7xl mx-auto px-5 md:px-10 lg:px-25 py-[74px] md:py-25 lg:py-25">
-            <div className="absolute left-0 bottom-0 max-w-[475px] w-full h-[125px] md:h-[135px] bg-cover bg-center bg-no-repeat z-10" style={{ backgroundImage: "url('/images/bg-nc02.svg')" }}></div>
+            <div className="absolute left-0 bottom-0 max-w-[475px] w-full h-[125px] md:h-[135px] bg-cover bg-center bg-no-repeat z-10"></div>
         </div>
     </section>
     

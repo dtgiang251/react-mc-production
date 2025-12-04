@@ -1,0 +1,24 @@
+name: Deploy React Frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH to Server and pull source
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /home/projects/mc-production/react-mc-production
+            git checkout main
+            git pull origin main
+            docker build --no-cache -t react-mc-production .
+            docker rm -f react-mc-production || true
+            docker run -d -p 3002:3000 --name react-mc-production react-mc-production

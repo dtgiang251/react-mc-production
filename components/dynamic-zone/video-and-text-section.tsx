@@ -22,7 +22,7 @@ export const VideoAndTextSection = ({ title, content, image, video }: { title: s
 
   return (
     <section className="bg-white my-20 md:my-25">
-        <Container className="items-center grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-25 px-5">
+        <Container className="items-start grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-25 px-5">
            
           <div className="aspect-[1.01] relative rounded-[10px] overflow-hidden group cursor-pointer" onClick={() => setShowVideo(true)}>
             <Image 

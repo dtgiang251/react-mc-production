@@ -32,7 +32,7 @@ export const Booking = ({ title, description, CTA, background }: BookingProps) =
     
     <section className="relative bg-no-repeat bg-cover bg-center min-h-[622px] md:min-h-[662px]" 
     style={{ backgroundImage: `url('${strapiImage(background?.url)}')` }}
-    > 
+    >
     
     <div className="bg-[linear-gradient(180deg,rgba(27,36,49,0)_0%,#1B2431_100%)] absolute left-0 right-0 bottom-0 z-10">
         <Container className="py-16 md:py-20">

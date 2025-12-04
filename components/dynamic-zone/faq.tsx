@@ -52,9 +52,6 @@ export const FAQ = ({ heading, sub_heading, faqs, image }: { heading: string, su
           </div> 
         </div>
 
-        <div className="hidden lg:block w-full bg-primary min-h-24">
-
-          </div>
       </Container>
     </section>
     </>

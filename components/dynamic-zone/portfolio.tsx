@@ -58,7 +58,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
     <section className="bg-secondary text-white relative">
         <Container className="py-20 md:pt-32 pb-20 px-5 md:px-10 lg:px-24 relative">
           <div className="absolute left-0 top-0 max-w-[485px] w-full h-[167px] md:h-[167px] bg-cover bg-center bg-no-repeat z-1"
-            style={{ backgroundImage: "url('/images/bg-nc03.svg')" }}
+            style={{ backgroundImage: "url('/images/illustration.svg')" }}
           ></div>
 
           <Slider className="relative z-10" ref={sliderRef} {...settings}>
@@ -83,7 +83,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                   </div>
                   
                   <div className="col-span-12 lg:col-span-8">
-                    <div className="grid grid-cols-12 gap-[10px] mb-[10px]">
+                    <div className="grid grid-cols-12 gap-[4px] mb-[4px]">
                       {item.image1?.url && (
                         <Image 
                           src={strapiImage(item.image1.url)}
@@ -112,7 +112,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         />
                       )}
                     </div>
-                    <div className="grid grid-cols-12 gap-[10px]"> 
+                    <div className="grid grid-cols-12 gap-[4px]"> 
                       {item.image4?.url && (
                         <Image 
                           src={strapiImage(item.image4.url)}
@@ -144,7 +144,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                   </div>
                 </article>  
                 <article>
-                  <div className="grid grid-cols-12 gap-[10px] mt-[10px]">
+                  <div className="grid grid-cols-12 gap-[4px] mt-[4px]">
                       <div className="relative col-span-6 lg:col-span-5">
                         {item.image7?.url && (
                           <Image 
@@ -190,7 +190,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         )}
                       </div>
                   </div>
-                  <div className="grid grid-cols-12 gap-[10px] mt-[10px]">
+                  <div className="grid grid-cols-12 gap-[4px] mt-[4px]">
                     <div className="relative col-span-6">
                       {item.video1?.image?.url && (
                         <div className="relative">

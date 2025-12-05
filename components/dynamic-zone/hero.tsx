@@ -59,7 +59,7 @@ export const Hero = ({
   useScrollLock(showMobileForm);
   
   return (
-    <div className="relative h-[100%] md:min-h-[800px] lg:h-screen pt-[160px] pb-10 sm:pb-25">
+    <div className="relative h-[100%] md:min-h-[800px] lg:h-screen pt-[200px] pb-10 sm:pb-25">
       {/* Background Slider */}
       <div className="absolute inset-0 w-full h-full">
         <Slider ref={sliderRef} {...settings} className="h-full">

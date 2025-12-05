@@ -15,6 +15,10 @@ export async function POST(request: Request) {
       : 'en';
     const t = translations[locale as keyof typeof translations] || translations['en']; 
 
+    // Log để kiểm tra biến môi trường
+    console.log('EMAIL_HOST:', process.env.EMAIL_HOST);
+    console.log('EMAIL_PORT:', process.env.EMAIL_PORT);
+
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: Number(process.env.EMAIL_PORT),
@@ -83,7 +87,7 @@ export async function POST(request: Request) {
 
     // Tùy chọn gửi email cho người dùng
     const userMailOptions = {
-      from: '"Marc Careri" <noreply@nextimmo.lu>',
+      from: '"Marc Careri" <marc.careri@gmail.com>',
       to: formData.email,
       subject: t.email_subject_user || 'Votre demande de réservation a été reçue',
       html: userEmailHtml,
@@ -91,7 +95,7 @@ export async function POST(request: Request) {
 
     // Tùy chọn gửi email cho quản trị viên
     const adminMailOptions = {
-      from: '"Marc Careri" <noreply@nextimmo.lu>',
+      from: '"Marc Careri" <marc.careri@gmail.com>',
       to: (recipientEmails as any)[formData.emailType] || process.env.ADMIN_EMAIL,
       subject: t.new_reservation_request || 'Nouvelle demande de réservation',
       html: adminEmailHtml,

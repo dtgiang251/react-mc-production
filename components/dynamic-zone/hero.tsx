@@ -18,19 +18,11 @@ import { Locale } from '@/translations/types';
 import { useScrollLock } from '@/hooks/useScrollLock';
 
 export const Hero = ({ 
-  heading, 
-  sub_heading, 
-  button_text, 
-  button_link, 
   form_title, 
-  background,
+  slider
 }: { 
-  heading: string; 
-  sub_heading: string; 
-  button_text: string; 
-  button_link: string; 
   form_title: string; 
-  background: any[];
+  slider: any[]
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showMobileForm, setShowMobileForm] = useState(false);
@@ -53,29 +45,34 @@ export const Hero = ({
   };
 
   const isInternalLink = (link: string) => {
-    return link.startsWith('/') || link.startsWith('#');
+    return link?.startsWith('/') || link?.startsWith('#');
   };
 
   useScrollLock(showMobileForm);
-  
+
+  // Lấy dữ liệu của slide hiện tại
+  const current = slider?.[currentSlide] || {};
+
   return (
     <div className="relative h-[100%] md:min-h-[800px] lg:h-screen pt-[200px] pb-10 sm:pb-25">
       {/* Background Slider */}
       <div className="absolute inset-0 w-full h-full">
         <Slider ref={sliderRef} {...settings} className="h-full">
-          {background && background.map((image, index) => (
-            image.url ? (
+          {slider && slider.map((item, index) => (
+            item.background?.url ? (
               <div key={index} className="relative w-full h-full">
                 <Image
-                  src={strapiImage(image.url)}
-                  alt={image.alternativeText || ''}
+                  src={strapiImage(item.background.url)}
+                  alt={item.background.alternativeText || ''}
                   fill
                   className="object-cover"
                   priority={index === 0}
                 />
                 <div className="absolute inset-0 bg-black/40" />
               </div>
-            ) : null
+            ) : (
+              <div key={index} className="relative w-full h-full bg-black/40" />
+            )
           ))}
         </Slider>
       </div>
@@ -84,29 +81,29 @@ export const Hero = ({
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 xl:px-20 h-full flex flex-col md:flex-row items-start gap-10 lg:gap-15">
         <div className="relative flex flex-col md:w-1/2 xl:pl-25">
           <h1 className="text-[50px] sm:text-[66px] lg:text-[78px] leading-none font-bold relative pb-6 text-white text-center md:text-left">
-            {heading}
+            {current.heading}
           </h1>
           <div className="hero-desc mt-2 md:mt-6 text-[28px] leading-none font-medium text-white relative text-center md:text-left">
-            <HtmlParser html={sub_heading || ''} />
+            <HtmlParser html={current.sub_heading || ''} />
           </div>
           <div className="space-x-2 items-center mt-10 hidden md:flex">
-            {button_text && (
-              isInternalLink(button_link) ? (
-                <Link href={button_link} passHref>
+            {current.button_text && (
+              isInternalLink(current.button_link) ? (
+                <Link href={current.button_link} passHref>
                   <Button as="span">
-                    {button_text}
+                    {current.button_text}
                   </Button>
                 </Link>
               ) : (
-                <Button as="a" href={button_link}>
-                  {button_text}
+                <Button as="a" href={current.button_link}>
+                  {current.button_text}
                 </Button>
               )
             )}
           </div>
           
           <div className="hero-dots flex gap-5 mt-12 items-center justify-center md:justify-start">
-            {background && background.map((_, index) => (
+            {slider && slider.map((_, index) => (
               <button
                 key={index}
                 onClick={() => sliderRef.current?.slickGoTo(index)}

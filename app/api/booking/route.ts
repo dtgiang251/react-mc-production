@@ -102,7 +102,11 @@ export async function POST(request: Request) {
     await transporter.sendMail(adminMailOptions);
 
     return NextResponse.json({ message: 'Emails sent successfully' }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ message: error }, { status: 500 });
+  } catch (error: any) {
+    console.error('Error sending email:', error);
+    return NextResponse.json({ 
+      message: 'Error sending emails',
+      error: error?.message || error
+    }, { status: 500 });
   }
 }

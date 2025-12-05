@@ -72,6 +72,8 @@ export const BookingForm = ({
         }),
       });
 
+      console.log('Response:', response);
+
       if (!response.ok) {
         throw new Error('Failed to submit form');
       }
@@ -89,7 +91,6 @@ export const BookingForm = ({
       alert(data.form_message.submit_success);
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert(error);
       alert(data.form_message.submit_error);
     } finally {
       setLoading(false);

@@ -78,7 +78,7 @@ export const Hero = ({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 xl:px-20 h-full flex flex-col md:flex-row items-start gap-10 lg:gap-15">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-10 xl:px-20 h-full flex flex-col md:flex-row items-center gap-10 lg:gap-15">
         <div className="relative flex flex-col md:w-1/2 xl:pl-25">
           <h1 className="text-[50px] sm:text-[66px] lg:text-[78px] leading-none font-bold relative pb-6 text-white text-center md:text-left">
             {current.heading}
@@ -192,7 +192,7 @@ export const Hero = ({
 
         </div>
         {/*  Booking form */}
-        <div className="hidden md:flex flex-col md:w-1/2">
+        <div className="hidden md:flex flex-col md:w-1/2 pb-[75px]">
           <div className="bg-white p-5 sm:p-[24px] lg:p-[34px] rounded-[10px] border border-gray-200 mt-3">
             <h3 className="text-[34px] lg:text-[40px] leading-tight text-secondary font-bold mb-8">{form_title}</h3>
             <BookingForm 

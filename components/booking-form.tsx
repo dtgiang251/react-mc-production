@@ -89,6 +89,7 @@ export const BookingForm = ({
       alert(data.form_message.submit_success);
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert(error);
       alert(data.form_message.submit_error);
     } finally {
       setLoading(false);

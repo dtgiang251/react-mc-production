@@ -193,7 +193,7 @@ export const Hero = ({
         </div>
         {/*  Booking form */}
         <div className="hidden md:flex flex-col md:w-1/2">
-          <div className="bg-white p-5 sm:p-[24px] lg:p-[34px] rounded-[10px] border border-gray-200 mt-8">
+          <div className="bg-white p-5 sm:p-[24px] lg:p-[34px] rounded-[10px] border border-gray-200 mt-3">
             <h3 className="text-[34px] lg:text-[40px] leading-tight text-secondary font-bold mb-8">{form_title}</h3>
             <BookingForm 
               data={footerData}

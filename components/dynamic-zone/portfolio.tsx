@@ -4,7 +4,7 @@ import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import Slider from "react-slick";
 import { Button } from "@/components/elements/button";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 import "slick-carousel/slick/slick.css";
@@ -35,7 +35,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
   };
 
-  const plyrProps = {
+  const plyrProps = useMemo(() => ({
     source: {
       type: "video" as const,
       sources: [
@@ -49,7 +49,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
       autoplay: true,
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
     },
-  };
+  }), [currentVideoId]);
 
   return (
     <>

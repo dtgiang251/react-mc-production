@@ -5,39 +5,22 @@ import Image from 'next/image';
 import Slider from "react-slick";
 import { Button } from "@/components/elements/button";
 import { useRef, useState } from "react";
+import Plyr from "plyr-react";
+import "plyr-react/plyr.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Helper to get YouTube embed URL from normal URL
-const getYoutubeEmbedUrl = (url: string) => {
-  // Parse videoId và start time (nếu có)
-  const match = url.match(/v=([^&]+)(?:.*?t=(\d+)s?)?/);
-  if (!match) return "";
-  const videoId = match[1];
-  const start = match[2] ? `start=${match[2]}` : "";
-  // Tạo query string đúng chuẩn
-  const params = [start, "autoplay=1"].filter(Boolean).join("&");
-  return `https://www.youtube.com/embed/${videoId}${params ? "?" + params : ""}`;
+// Helper to get YouTube video ID from URL
+const getYoutubeVideoId = (url: string) => {
+  const match = url.match(/v=([^&]+)/);
+  return match ? match[1] : "";
 };
 
 export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<Slider | null>(null);
-  const [showVideo1, setShowVideo1] = useState(false);
-  const [showVideo2, setShowVideo2] = useState(false);
-  const [currentVideo, setCurrentVideo] = useState<{url: string} | null>(null);
-
-  // Hardcode YouTube URLs for each slider/video
-  const youtubeVideos = [
-    [
-      "https://www.youtube.com/watch?v=0TCHGCIlLmw",
-      "https://www.youtube.com/watch?v=FJCDFbJOrHg"
-    ],
-    [
-      "https://www.youtube.com/watch?v=sF3s7zaXZMU",
-      "https://www.youtube.com/watch?v=zq2a4Ccdgig"
-    ]
-  ];
+  const [showVideo, setShowVideo] = useState(false);
+  const [currentVideoId, setCurrentVideoId] = useState<string>("");
 
   const settings = {
     dots: false,
@@ -50,6 +33,22 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
     autoplaySpeed: 5000,
     fade: true,
     beforeChange: (_: number, next: number) => setCurrentSlide(next),
+  };
+
+  const plyrProps = {
+    source: {
+      type: "video" as const,
+      sources: [
+        {
+          src: currentVideoId,
+          provider: "youtube" as const,
+        },
+      ],
+    },
+    options: {
+      autoplay: true,
+      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+    },
   };
 
   return (
@@ -203,8 +202,8 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                           />
                           <div className="absolute inset-0 flex items-center justify-center cursor-pointer"
                                onClick={() => {
-                                 setShowVideo1(true);
-                                 setCurrentVideo({ url: youtubeVideos[index][0] });
+                                 setShowVideo(true);
+                                 setCurrentVideoId(getYoutubeVideoId(item.video1.youtube));
                                }}>
                             <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="25.5" cy="25.8994" r="25" fill="white"/>
@@ -227,8 +226,8 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                           />
                           <div className="absolute inset-0 flex items-center justify-center cursor-pointer"
                                onClick={() => {
-                                 setShowVideo2(true);
-                                 setCurrentVideo({ url: youtubeVideos[index][1] });
+                                 setShowVideo(true);
+                                 setCurrentVideoId(getYoutubeVideoId(item.video2.youtube));
                                }}>
                             <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="25.5" cy="25.8994" r="25" fill="white"/>
@@ -259,41 +258,16 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
             ))}
           </div>
 
-          {/* Video Popups */}
-          {showVideo1 && currentVideo && (
-            <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" 
-                 onClick={() => setShowVideo1(false)}>
-              <div className="relative w-full max-w-4xl aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src={getYoutubeEmbedUrl(currentVideo.url)}
-                  title="YouTube video player"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
+          {/* Video Popup with Plyr */}
+          {showVideo && currentVideoId && (
+            <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" 
+                 onClick={() => setShowVideo(false)}>
+              <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
                 <button 
-                  onClick={() => setShowVideo1(false)}
-                  className="absolute top-[-40px] right-0 text-white text-xl p-2"
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-[-50px] right-0 text-white text-3xl hover:text-gray-300 z-10"
                 >✕</button>
-              </div>
-            </div>
-          )}
-
-          {showVideo2 && currentVideo && (
-            <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4" 
-                 onClick={() => setShowVideo2(false)}>
-              <div className="relative w-full max-w-4xl aspect-video">
-                <iframe
-                  className="w-full h-full"
-                  src={getYoutubeEmbedUrl(currentVideo.url)}
-                  title="YouTube video player"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
-                <button 
-                  onClick={() => setShowVideo2(false)}
-                  className="absolute top-[-40px] right-0 text-white text-xl p-2"
-                >✕</button>
+                <Plyr {...plyrProps} />
               </div>
             </div>
           )}

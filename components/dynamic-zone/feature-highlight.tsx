@@ -19,7 +19,7 @@ export const FeatureHighlight = ({ title, description, bottom_image, right_image
             </p>
             )}
           </div>
-          <div className="aspect-video mt-10 lg:mt-25 hidden lg:block">
+          <div className="aspect-video mt-10 lg:mt-0 hidden lg:flex items-end">
             {bottom_image?.url && (
               <Image
                 src={strapiImage(bottom_image.url)} 
@@ -45,7 +45,7 @@ export const FeatureHighlight = ({ title, description, bottom_image, right_image
               />
             )}
           </div>
-          <div className="absolute right-[0px] top-[64%] bottom-auto w-full left-[0px] rounded-[10px]">
+          <div className="absolute right-[0px] top-[64%] md:top-auto md:bottom-0 w-full left-[0px] rounded-[10px]">
             {right_bottom_image?.url && (
               <Image
                 src={strapiImage(right_bottom_image.url)}

@@ -61,7 +61,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
         <Container className="md:flex gap-10 lg:gap-10">
           
           <div className="md:w-6/12 lg:w-5/12 flex flex-col justify-center mb-10 md:mb-0">
-            <h2 className="w-full md:w-[90%] text-[34px] leading-[40px] md:text-5xl md:leading-[55px]font-inter font-bold mb-5 lg:mb-16 text-secondary">
+            <h2 className="w-full md:w-[90%] text-[34px] leading-[40px] md:text-5xl md:leading-[55px]font-inter font-bold mb-5 lg:mb-8 text-secondary">
               {title}
             </h2>
             <p className="font-inter font-normal text-secondary leading-relaxed text-base opacity-[.6]">{description}</p>

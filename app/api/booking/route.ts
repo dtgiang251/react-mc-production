@@ -15,6 +15,7 @@ export async function POST(request: Request) {
       : 'en';
     const t = translations[locale as keyof typeof translations] || translations['en']; 
 
+    
     // chạy .env
     // Log để kiểm tra biến môi trường
     console.log('EMAIL_HOST:', process.env.EMAIL_HOST);

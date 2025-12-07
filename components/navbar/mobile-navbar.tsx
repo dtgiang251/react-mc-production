@@ -13,12 +13,15 @@ import { i18n } from "@/i18n.config";
 import Image from 'next/image';
 import { useScrollLock } from '@/hooks/useScrollLock';
 
+type NavbarItemType = {
+  URL: string;
+  text: string;
+  target?: string;
+  is_submenu?: boolean;
+};
+
 type Props = {
-  leftNavbarItems: {
-    URL: string;
-    text: string;
-    target?: string;
-  }[];
+  leftNavbarItems: NavbarItemType[];
   rightNavbarItems: {
     URL: string;
     text: string;
@@ -29,8 +32,31 @@ type Props = {
   footer: any;
 };
 
+// Helper function để nhóm menu thành cấu trúc parent-children
+const groupMenuItems = (items: NavbarItemType[]) => {
+  const result: Array<NavbarItemType & { children?: NavbarItemType[] }> = [];
+  let currentParent: (NavbarItemType & { children?: NavbarItemType[] }) | null = null;
+
+  items.forEach((item) => {
+    if (item.is_submenu) {
+      if (currentParent) {
+        if (!currentParent.children) {
+          currentParent.children = [];
+        }
+        currentParent.children.push(item);
+      }
+    } else {
+      currentParent = { ...item, children: [] };
+      result.push(currentParent);
+    }
+  });
+
+  return result;
+};
+
 export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, footer }: Props) => {
   const [open, setOpen] = useState(false);
+  const [expandedMenus, setExpandedMenus] = useState<Set<string>>(new Set());
 
   const { scrollY } = useScroll();
 
@@ -48,14 +74,27 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
     return `${locale === i18n.defaultLocale ? '' : `/${locale}`}${path}`;
   };
 
+  const groupedMenuItems = groupMenuItems(leftNavbarItems);
+
+  const toggleSubmenu = (text: string) => {
+    setExpandedMenus(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(text)) {
+        newSet.delete(text);
+      } else {
+        newSet.add(text);
+      }
+      return newSet;
+    });
+  };
+
   useScrollLock(open);
 
   return (
     <div
       className={cn(
         "relative flex justify-between bg-transparent items-center w-full px-5 md:px-10 py-4 transition duration-200 leading-none",
-        showBackground &&
-        " bg-white"
+        showBackground && " bg-white"
       )}
     >
       <Logo locale={locale} image={logo?.image} company={logo?.company} active={showBackground} />
@@ -86,39 +125,52 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
       </div>
 
       {open && (
-        <div className="absolute top-full right-5 md:right-10 mt-5 bg-white w-[335px] rounded-[10px] z-50 flex flex-col items-start justify-start pt-6 text-base">
+        <div className="absolute top-full right-5 md:right-10 mt-5 bg-white w-[335px] rounded-[10px] z-50 flex flex-col items-start justify-start text-base">
          
           <div className="mobile-menu flex flex-col w-full items-center justify-start px-6 pb-6 text-primary2 font-semibold">
-            {leftNavbarItems.map((navItem: any, idx: number) => (
-              <>
-                {navItem.children && navItem.children.length > 0 ? (
+            {groupedMenuItems.map((item, idx: number) => (
+              <div key={`menu-${idx}`} className="w-full">
+                {item.children && item.children.length > 0 ? (
                   <>
-                    {navItem.children.map((childNavItem: any, idx: number) => (
-                      <Link
-                        key={`link=${idx}`}
-                        href={getLocalizedHref(childNavItem.URL)}
-                        onClick={() => setOpen(false)}
-                        className="relative max-w-[15rem]"
+                    <button
+                      onClick={() => toggleSubmenu(item.text)}
+                      className="relative w-full text-center py-6 flex items-center justify-center gap-2 has-sub-menu"
+                    >
+                      <span className="block">{item.text}</span>
+                      <svg 
+                        className={`w-4 h-4 transition-transform ${expandedMenus.has(item.text) ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
                       >
-                        <span className="block">
-                          {childNavItem.text}
-                        </span>
-                      </Link>
-                    ))}
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    {expandedMenus.has(item.text) && (
+                      <div className="bg-[#F9FAFB] rounded-[10px] py-2 sub-menu">
+                        {item.children.map((child, childIdx: number) => (
+                          <Link
+                            key={`child-${childIdx}`}
+                            href={getLocalizedHref(child.URL)}
+                            onClick={() => setOpen(false)}
+                            className="block text-center py-3 text-gray-600 hover:text-primary2 transition-colors"
+                          >
+                            {child.text}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </>
                 ) : (
                   <Link
-                    key={`link=${idx}`}
-                    href={getLocalizedHref(navItem.URL)}
+                    href={getLocalizedHref(item.URL)}
                     onClick={() => setOpen(false)}
-                    className="relative w-full text-center py-6"
+                    className="relative w-full text-center py-6 block"
                   >
-                    <span className="block">
-                      {navItem.text}
-                    </span>
+                    <span className="block">{item.text}</span>
                   </Link>
                 )}
-              </>
+              </div>
             ))}
           </div>
           <div className="flex flex-row w-full items-center justify-center gap-2.5  px-8 pb-4 ">
@@ -126,7 +178,8 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
               <Button 
                 key={item.text} 
                 variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} 
-                as={Link} 
+                as={Link}
+                className="sm:w-full"
                 href={getLocalizedHref(item.URL)}
                 onClick={() => setOpen(false)}
               >

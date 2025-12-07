@@ -39,7 +39,7 @@ const groupMenuItems = (items: NavbarItemType[]) => {
   let currentParent: (NavbarItemType & { children?: NavbarItemType[] }) | null = null;
 
   items.forEach((item) => {
-    console.log('Processing item:', item);
+    //console.log('Processing item:', item);
     if (item.is_submenu) {
       // Nếu là submenu, thêm vào children của parent hiện tại
       if (currentParent) {

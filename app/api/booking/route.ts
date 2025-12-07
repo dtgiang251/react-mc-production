@@ -17,8 +17,8 @@ export async function POST(request: Request) {
 
     // Khởi tạo Mailjet client
     const mailjet = Mailjet.apiConnect(
-      process.env.MAILJET_API_KEY || 'f6a103b54ac0024c913b6e159b600e86',
-      process.env.MAILJET_SECRET_KEY || '6f325bb5346f31df862b566d394a6926'
+      process.env.MAILJET_API_KEY || '',
+      process.env.MAILJET_SECRET_KEY || ''
     );
 
     const recipientEmails = {

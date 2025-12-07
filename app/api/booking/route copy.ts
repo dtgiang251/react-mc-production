@@ -1,7 +1,7 @@
+import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
 import { translations } from '@/translations/common';
 import type { Translations } from '@/translations/types';
-import Mailjet from 'node-mailjet';
 
 export async function POST(request: Request) {
   try {
@@ -15,15 +15,28 @@ export async function POST(request: Request) {
       : 'en';
     const t = translations[locale as keyof typeof translations] || translations['en']; 
 
-    // Khởi tạo Mailjet client
-    const mailjet = Mailjet.apiConnect(
-      process.env.MAILJET_API_KEY || 'f6a103b54ac0024c913b6e159b600e86',
-      process.env.MAILJET_SECRET_KEY || '6f325bb5346f31df862b566d394a6926'
-    );
+    
+    // chạy .env
+    // Log để kiểm tra biến môi trường
+    console.log('EMAIL_HOST:', process.env.EMAIL_HOST);
+    console.log('EMAIL_PORT:', process.env.EMAIL_PORT);
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: Number(process.env.EMAIL_PORT),
+      secure: Number(process.env.EMAIL_PORT) === 465, // true nếu là 465, false nếu là 587/25
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
     const recipientEmails = {
-      secretimmo: process.env.SECRETIMMO_EMAIL,
-      nextimmo: process.env.NEXTIMMO_EMAIL
+    secretimmo: process.env.SECRETIMMO_EMAIL,
+    nextimmo: process.env.NEXTIMMO_EMAIL
     };
 
     // HTML cho email người dùng
@@ -74,49 +87,25 @@ export async function POST(request: Request) {
     </div>
     `;
 
-    // Gửi email cho người dùng
-    await mailjet
-      .post('send', { version: 'v3.1' })
-      .request({
-        Messages: [
-          {
-            From: {
-              Email: process.env.EMAIL_USER || 'noreply@mc-production.lu',
-              Name: 'Marc Careri'
-            },
-            To: [
-              {
-                Email: formData.email,
-                Name: formData.name
-              }
-            ],
-            Subject: t.email_subject_user || 'Votre demande de réservation a été reçue',
-            HTMLPart: userEmailHtml
-          }
-        ]
-      });
+    // Tùy chọn gửi email cho người dùng
+    const userMailOptions = {
+      from: '"Marc Careri" <marc.careri@gmail.com>',
+      to: formData.email,
+      subject: t.email_subject_user || 'Votre demande de réservation a été reçue',
+      html: userEmailHtml,
+    };
 
-    // Gửi email cho quản trị viên
-    await mailjet
-      .post('send', { version: 'v3.1' })
-      .request({
-        Messages: [
-          {
-            From: {
-              Email: process.env.EMAIL_USER || 'noreply@mc-production.lu',
-              Name: 'Marc Careri'
-            },
-            To: [
-              {
-                Email: (recipientEmails as any)[formData.emailType] || process.env.ADMIN_EMAIL || 'marc.careri@gmail.com',
-                Name: 'Admin'
-              }
-            ],
-            Subject: t.new_reservation_request || 'Nouvelle demande de réservation',
-            HTMLPart: adminEmailHtml
-          }
-        ]
-      });
+    // Tùy chọn gửi email cho quản trị viên
+    const adminMailOptions = {
+      from: '"Marc Careri" <marc.careri@gmail.com>',
+      to: (recipientEmails as any)[formData.emailType] || process.env.ADMIN_EMAIL,
+      subject: t.new_reservation_request || 'Nouvelle demande de réservation',
+      html: adminEmailHtml,
+    };
+
+    // Gửi email
+    await transporter.sendMail(userMailOptions);
+    await transporter.sendMail(adminMailOptions);
 
     return NextResponse.json({ message: 'Emails sent successfully' }, { status: 200 });
   } catch (error: any) {

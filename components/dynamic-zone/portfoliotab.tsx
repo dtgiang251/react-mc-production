@@ -188,7 +188,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
 
           {/* Gallery Lightbox */}
           {showGallery && currentItem && (
-            <div className="fixed inset-0 bg-black/95 z-[9999] flex flex-col items-center justify-center p-4">
+            <div className="fixed inset-0 bg-black/80 z-[9999] flex flex-col items-center justify-center p-4">
               {/* Close Button */}
               <button 
                 onClick={() => setShowGallery(false)}
@@ -200,9 +200,9 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                 onClick={goToPrevious}
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
               >
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
+                <svg width="13" height="28" viewBox="0 0 13 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.7507 0L12.834 0.5L1.83398 14L12.834 27L11.7507 28L0.000712395 14L11.7507 0Z" fill="#D0BFAC"/>
+</svg>
               </button>
 
               {/* Next Button */}
@@ -210,9 +210,9 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                 onClick={goToNext}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
               >
-                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <svg width="13" height="28" viewBox="0 0 13 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.08327 0L0 0.5L11 14L0 27L1.08327 28L12.8333 14L1.08327 0Z" fill="#D0BFAC"/>
+</svg>
               </button>
 
               {/* Main Content */}
@@ -249,7 +249,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                         key={index}
                         onClick={() => handleThumbnailClick(index)}
                         className={`relative flex-shrink-0 w-20 h-20 overflow-hidden transition-all ${
-                          index === currentIndex ? 'ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                          index === currentIndex ? 'opacity-40' : 'opacity-100'
                         }`}
                       >
                         {item.image?.url && (

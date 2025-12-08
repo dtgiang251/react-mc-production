@@ -27,11 +27,10 @@ type TabItem = {
 export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[] }) => {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
-  const [showImageModal, setShowImageModal] = useState(false);
-  const [currentVideoId, setCurrentVideoId] = useState<string>("");
-  const [currentImage, setCurrentImage] = useState<string>("");
+  const [showGallery, setShowGallery] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(12);
+  const [mediaType, setMediaType] = useState<'video' | 'image' | null>(null);
 
   // Set active tab dựa trên query parameter khi component mount
   useEffect(() => {
@@ -44,44 +43,79 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
     }
   }, [searchParams, PortfolioTabItem]);
 
-  const plyrProps = useMemo(() => ({
-    source: {
-      type: "video" as const,
-      sources: [
-        {
-          src: currentVideoId,
-          provider: "youtube" as const,
-        },
-      ],
-    },
-    options: {
-      autoplay: true,
-      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
-    },
-  }), [currentVideoId]);
+  const currentItems = PortfolioTabItem[activeTab]?.PortfolioItem || [];
+  const displayedItems = currentItems.slice(0, visibleItems);
+  const hasMore = visibleItems < currentItems.length;
+  const currentItem = currentItems[currentIndex];
+  const currentVideoId = currentItem?.youtube_link ? getYoutubeVideoId(currentItem.youtube_link) : "";
 
-  const handleItemClick = (item: PortfolioItem) => {
-    if (item.youtube_link) {
-      setCurrentVideoId(getYoutubeVideoId(item.youtube_link));
-      setShowVideo(true);
-    } else if (item.image?.url) {
-      setCurrentImage(strapiImage(item.image.url));
-      setShowImageModal(true);
-    }
+  const plyrProps = useMemo(() => {
+    if (!currentVideoId) return null;
+    return {
+      source: {
+        type: "video" as const,
+        sources: [
+          {
+            src: currentVideoId,
+            provider: "youtube" as const,
+          },
+        ],
+      },
+      options: {
+        autoplay: true,
+        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+      },
+    };
+  }, [currentVideoId]);
+
+  const handleItemClick = (index: number) => {
+    setCurrentIndex(index);
+    setMediaType(null); // Reset trước
+    setShowGallery(true);
+    // Set media type sau một chút để đảm bảo unmount hoàn toàn
+    setTimeout(() => {
+      const item = currentItems[index];
+      setMediaType(item?.youtube_link ? 'video' : 'image');
+    }, 10);
+  };
+
+  const goToPrevious = () => {
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : currentItems.length - 1;
+    setMediaType(null);
+    setCurrentIndex(newIndex);
+    setTimeout(() => {
+      const item = currentItems[newIndex];
+      setMediaType(item?.youtube_link ? 'video' : 'image');
+    }, 10);
+  };
+
+  const goToNext = () => {
+    const newIndex = currentIndex < currentItems.length - 1 ? currentIndex + 1 : 0;
+    setMediaType(null);
+    setCurrentIndex(newIndex);
+    setTimeout(() => {
+      const item = currentItems[newIndex];
+      setMediaType(item?.youtube_link ? 'video' : 'image');
+    }, 10);
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setMediaType(null);
+    setCurrentIndex(index);
+    setTimeout(() => {
+      const item = currentItems[index];
+      setMediaType(item?.youtube_link ? 'video' : 'image');
+    }, 10);
   };
 
   const loadMore = () => {
     setVisibleItems(prev => prev + 12);
   };
 
-  const currentItems = PortfolioTabItem[activeTab]?.PortfolioItem || [];
-  const displayedItems = currentItems.slice(0, visibleItems);
-  const hasMore = visibleItems < currentItems.length;
-
   return (
     <>
       <section className="bg-white relative py-20">
-        <div className="absolute left-0 top-0 max-w-[487px] w-full h-[172px] md:h-[172px] bg-cover bg-center bg-no-repeat z-1"
+        <div className="hidden sm:block absolute left-0 top-0 max-w-[487px] w-full h-[172px] md:h-[172px] bg-cover bg-center bg-no-repeat z-1"
             style={{ backgroundImage: "url('/images/illustration.svg')" }}
           ></div>
         <Container className="px-5 md:px-10 lg:px-24">
@@ -111,7 +145,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
               <div
                 key={index}
                 className="relative cursor-pointer group overflow-hidden"
-                onClick={() => handleItemClick(item)}
+                onClick={() => handleItemClick(index)}
               >
                 {item.image?.url && (
                   <>
@@ -152,48 +186,94 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
             </div>
           )}
 
-          {/* Video Popup */}
-          {showVideo && currentVideoId && (
-            <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4" 
-                 onClick={() => {
-                   setShowVideo(false);
-                   setCurrentVideoId("");
-                 }}>
-              <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
-                <button 
-                  onClick={() => {
-                    setShowVideo(false);
-                    setCurrentVideoId("");
-                  }}
-                  className="absolute top-[-50px] right-0 text-white text-3xl hover:text-gray-300 z-10"
-                >✕</button>
-                {currentVideoId && <Plyr {...plyrProps} />}
-              </div>
-            </div>
-          )}
+          {/* Gallery Lightbox */}
+          {showGallery && currentItem && (
+            <div className="fixed inset-0 bg-black/95 z-[9999] flex flex-col items-center justify-center p-4">
+              {/* Close Button */}
+              <button 
+                onClick={() => setShowGallery(false)}
+                className="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 z-10"
+              >✕</button>
 
-          {/* Image Modal */}
-          {showImageModal && currentImage && (
-            <div className="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center p-4" 
-                 onClick={() => {
-                   setShowImageModal(false);
-                   setCurrentImage("");
-                 }}>
-              <div className="relative max-w-7xl max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
-                <button 
-                  onClick={() => {
-                    setShowImageModal(false);
-                    setCurrentImage("");
-                  }}
-                  className="absolute top-[-50px] right-0 text-white text-3xl hover:text-gray-300 z-10"
-                >✕</button>
-                <Image
-                  src={currentImage}
-                  alt="Portfolio image"
-                  width={1200}
-                  height={800}
-                  className="max-h-[90vh] w-auto object-contain"
-                />
+              {/* Previous Button */}
+              <button
+                onClick={goToPrevious}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              >
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 z-10"
+              >
+                <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Main Content */}
+              <div className="w-full max-w-6xl flex flex-col items-center gap-4">
+                {/* Image or Video */}
+                <div className="relative w-full min-h-[400px] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                  {mediaType === 'video' && currentVideoId && plyrProps ? (
+                    <div className="aspect-video w-full">
+                      <Plyr key={currentVideoId} {...plyrProps} />
+                    </div>
+                  ) : mediaType === 'image' && currentItem.image?.url ? (
+                    <div className="relative w-full flex items-center justify-center">
+                      <Image
+                        src={strapiImage(currentItem.image.url)}
+                        alt={currentItem.image.alternativeText || ''}
+                        width={1440}
+                        height={775}
+                        className="max-h-[70vh] w-auto object-contain"
+                      />
+                      {currentItem.image.alternativeText && (
+                        <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black/50 px-4 py-2 rounded">
+                          {currentItem.image.alternativeText}
+                        </p>
+                      )}
+                    </div>
+                  ) : null}
+                </div>
+
+                {/* Thumbnail Slider */}
+                <div className="w-full overflow-x-auto">
+                  <div className="flex gap-2 justify-center min-w-max px-4">
+                    {currentItems.map((item, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleThumbnailClick(index)}
+                        className={`relative flex-shrink-0 w-20 h-20 overflow-hidden transition-all ${
+                          index === currentIndex ? 'ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        {item.image?.url && (
+                          <>
+                            <Image
+                              src={strapiImage(item.image.url)}
+                              alt=""
+                              fill
+                              className="object-cover"
+                            />
+                            {item.youtube_link && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                                <svg width="20" height="20" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <circle cx="25.5" cy="25.5" r="25" fill="white"/>
+                                  <path d="M35.6562 24.5894C36.6979 25.1716 36.6979 26.6272 35.6562 27.2094L21.5937 35.0695C20.5521 35.6517 19.25 34.9239 19.25 33.7595L19.25 18.0393C19.25 16.8749 20.5521 16.1471 21.5938 16.7293L35.6562 24.5894Z" fill="#1B2431"/>
+                                </svg>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           )}

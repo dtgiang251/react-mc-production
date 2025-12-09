@@ -16,6 +16,7 @@ const getYoutubeVideoId = (url: string) => {
 type PortfolioItem = {
   image: { url: string; alternativeText?: string };
   youtube_link?: string;
+  video_mp4?: { url: string };
 };
 
 type TabItem = {
@@ -70,12 +71,17 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
 
   const handleItemClick = (index: number) => {
     setCurrentIndex(index);
-    setMediaType(null); // Reset trước
+    setMediaType(null);
     setShowGallery(true);
-    // Set media type sau một chút để đảm bảo unmount hoàn toàn
     setTimeout(() => {
       const item = currentItems[index];
-      setMediaType(item?.youtube_link ? 'video' : 'image');
+      if (item?.youtube_link) {
+        setMediaType('video');
+      } else if (item?.video_mp4) {
+        setMediaType('video');
+      } else {
+        setMediaType('image');
+      }
     }, 10);
   };
 
@@ -85,7 +91,13 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
     setCurrentIndex(newIndex);
     setTimeout(() => {
       const item = currentItems[newIndex];
-      setMediaType(item?.youtube_link ? 'video' : 'image');
+      if (item?.youtube_link) {
+        setMediaType('video');
+      } else if (item?.video_mp4) {
+        setMediaType('video');
+      } else {
+        setMediaType('image');
+      }
     }, 10);
   };
 
@@ -95,7 +107,13 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
     setCurrentIndex(newIndex);
     setTimeout(() => {
       const item = currentItems[newIndex];
-      setMediaType(item?.youtube_link ? 'video' : 'image');
+      if (item?.youtube_link) {
+        setMediaType('video');
+      } else if (item?.video_mp4) {
+        setMediaType('video');
+      } else {
+        setMediaType('image');
+      }
     }, 10);
   };
 
@@ -104,7 +122,13 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
     setCurrentIndex(index);
     setTimeout(() => {
       const item = currentItems[index];
-      setMediaType(item?.youtube_link ? 'video' : 'image');
+      if (item?.youtube_link) {
+        setMediaType('video');
+      } else if (item?.video_mp4) {
+        setMediaType('video');
+      } else {
+        setMediaType('image');
+      }
     }, 10);
   };
 
@@ -157,7 +181,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                       className="object-cover transition-transform duration-300 h-[300px]"
                     />
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      {item.youtube_link ? (
+                      {(item.youtube_link || item.video_mp4) ? (
                         <svg width="51" height="51" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="25.5" cy="25.5" r="25" fill="white"/>
                           <path d="M35.6562 24.5894C36.6979 25.1716 36.6979 26.6272 35.6562 27.2094L21.5937 35.0695C20.5521 35.6517 19.25 34.9239 19.25 33.7595L19.25 18.0393C19.25 16.8749 20.5521 16.1471 21.5938 16.7293L35.6562 24.5894Z" fill="#1B2431"/>
@@ -223,6 +247,18 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                     <div className="aspect-video w-full">
                       <Plyr key={currentVideoId} {...plyrProps} />
                     </div>
+                  ) : mediaType === 'video' && currentItem.video_mp4?.url ? (
+                    <div className="aspect-video w-full">
+                      <video
+                        key={currentItem.video_mp4.url}
+                        controls
+                        autoPlay
+                        className="w-full h-full"
+                      >
+                        <source src={strapiImage(currentItem.video_mp4.url)} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
                   ) : mediaType === 'image' && currentItem.image?.url ? (
                     <div className="relative w-full flex items-center justify-center">
                       <Image
@@ -260,7 +296,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                               fill
                               className="object-cover"
                             />
-                            {item.youtube_link && (
+                            {(item.youtube_link || item.video_mp4) && (
                               <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                                 <svg width="20" height="20" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <circle cx="25.5" cy="25.5" r="25" fill="white"/>

@@ -5,6 +5,9 @@ import { generateMetadataObject } from '@/lib/shared/metadata';
 import ClientSlugHandler from '../ClientSlugHandler';
 import { strapiImage } from '@/lib/strapi/strapiImage';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function generateMetadata({
   params,
 }: {
@@ -48,6 +51,8 @@ export default async function Page({ params }: { params: { locale: string, slug:
     { [params.locale]: params.slug }
   ) || { [params.locale]: params.slug };
 
+  //console.log('pageData:', pageData);
+
   return (
     <>
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
@@ -62,18 +67,23 @@ export default async function Page({ params }: { params: { locale: string, slug:
             backgroundPosition: 'center'
           }}
         >
-          {pageData.banner_title ? (
-          <h1 className="mb-3 text-[50px] md:text-[66px] lg:text-[78px] leading-none text-center font-bold">
-            {pageData.banner_title}
-          </h1>
-          ) : null}
+          {/* Overlay layer */}
+          <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-          {pageData.banner_description ? (
-          <div className="mx-auto text-[28px] text-center">
-            {pageData.banner_description}
+          {/* Content */}
+          <div className="relative z-10 flex flex-col items-center justify-center">
+            {pageData.banner_title ? (
+              <h1 className="mb-3 text-[50px] md:text-[66px] lg:text-[78px] leading-none text-center font-bold">
+                {pageData.banner_title}
+              </h1>
+            ) : null}
+
+            {pageData.banner_description ? (
+              <div className="mx-auto text-[28px] text-center">
+                {pageData.banner_description}
+              </div>
+            ) : null}
           </div>
-          ) : null}
-
         </div>
       ) : null }
 

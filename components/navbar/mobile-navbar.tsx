@@ -70,10 +70,6 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
     }
   });
 
-  const getLocalizedHref = (path: string) => {
-    return `${locale === i18n.defaultLocale ? '' : `/${locale}`}${path}`;
-  };
-
   const groupedMenuItems = groupMenuItems(leftNavbarItems);
 
   const toggleSubmenu = (text: string) => {
@@ -180,7 +176,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
                 variant={index === rightNavbarItems.length - 1 ? 'primary' : 'simple'} 
                 as={Link}
                 className="sm:w-full"
-                href={getLocalizedHref(item.URL)}
+                href={item.URL}
                 onClick={() => setOpen(false)}
               >
                 {item.text}

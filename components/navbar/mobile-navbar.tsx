@@ -163,7 +163,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
                   </>
                 ) : (
                   <Link
-                    href={getLocalizedHref(item.URL)}
+                    href={item.URL}
                     onClick={() => setOpen(false)}
                     className="relative w-full text-center py-6 block"
                   >

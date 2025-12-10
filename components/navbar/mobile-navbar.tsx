@@ -153,7 +153,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
                             key={`child-${childIdx}`}
                             href={getLocalizedHref(child.URL)}
                             onClick={() => setOpen(false)}
-                            className="block text-center py-3 text-gray-600 hover:text-primary2 transition-colors"
+                            className="block text-center py-3 text-gray-600 text-sm hover:text-primary2 transition-colors"
                           >
                             {child.text}
                           </Link>

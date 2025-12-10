@@ -108,9 +108,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
                         key={child.text}
                         href={child.URL as never}
                         target={child.target}
-                        className={`block text-center px-4 py-4 text-primary2 transition-colors relative ${
-                          index !== item.children!.length - 1 ? 'after:content-[""] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-0 after:w-[100px] after:h-[1px] after:bg-gray-200' : ''
-                        }`}
+                        className={`block text-sm text-center px-4 py-4 text-primary2 transition-colors relative`}
                       >
                         {child.text}
                       </NavbarItem>

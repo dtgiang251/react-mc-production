@@ -151,7 +151,7 @@ export const MobileNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale, 
                         {item.children.map((child, childIdx: number) => (
                           <Link
                             key={`child-${childIdx}`}
-                            href={getLocalizedHref(child.URL)}
+                            href={child.URL as never}
                             onClick={() => setOpen(false)}
                             className="block text-center py-3 text-gray-600 text-sm hover:text-primary2 transition-colors"
                           >

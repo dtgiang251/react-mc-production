@@ -102,13 +102,13 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </NavbarItem>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 min-w-[160px] bg-white shadow-[0px_4px_20px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute left-[30%] top-full mt-2 min-w-[130px] bg-white/35 shadow-[0px_4px_20px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
                     {item.children.map((child, index) => (
                       <NavbarItem 
                         key={child.text}
                         href={child.URL as never}
                         target={child.target}
-                        className={`block text-sm text-center px-4 py-4 text-primary2 transition-colors relative`}
+                        className={`block font-normal text-sm text-center px-4 py-0 text-left text-white transition-colors relative`}
                       >
                         {child.text}
                       </NavbarItem>

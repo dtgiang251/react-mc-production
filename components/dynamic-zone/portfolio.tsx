@@ -82,7 +82,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                   </div>
                   
                   <div className="col-span-12 lg:col-span-8">
-                    <div className="grid grid-cols-12 gap-[4px] mb-[4px]">
+                    <div className="grid grid-cols-12 gap-[1px] mb-[1px]">
                       {item.image1?.url && (
                         <Image 
                           src={strapiImage(item.image1.url)}
@@ -111,7 +111,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         />
                       )}
                     </div>
-                    <div className="grid grid-cols-12 gap-[4px]"> 
+                    <div className="grid grid-cols-12 gap-[1px]"> 
                       {item.image4?.url && (
                         <Image 
                           src={strapiImage(item.image4.url)}
@@ -143,7 +143,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                   </div>
                 </article>  
                 <article>
-                  <div className="grid grid-cols-12 gap-[4px] mt-[4px]">
+                  <div className="grid grid-cols-12 gap-[1px] mt-[1px]">
                       <div className="relative col-span-6 lg:col-span-5">
                         {item.image7?.url && (
                           <Image 
@@ -189,7 +189,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                         )}
                       </div>
                   </div>
-                  <div className="grid grid-cols-12 gap-[4px] mt-[4px]">
+                  <div className="grid grid-cols-12 gap-[1px] mt-[1px]">
                     <div className="relative col-span-6">
                       {item.video1?.image?.url && (
                         <div className="relative">

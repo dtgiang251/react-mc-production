@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { locale: string, slug:
       <ClientSlugHandler localizedSlugs={localizedSlugs} />
       {pageData?.banner_background ? (
         <div 
-          className="banner relative z-20 px-5 pb-20 pt-[160px] w-full flex flex-col items-center justify-center text-white"
+          className="banner relative z-20 px-5 pb-20 pt-[180px] w-full flex flex-col items-center justify-center text-white"
           style={{ 
             backgroundImage: pageData?.banner_background ? 
               `url(${strapiImage(pageData.banner_background.url)})` : 

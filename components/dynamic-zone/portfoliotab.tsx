@@ -141,26 +141,29 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
       <section className="bg-white relative py-20">
         <div className="hidden sm:block absolute left-0 top-0 max-w-[487px] w-full h-[172px] md:h-[172px] bg-cover bg-center bg-no-repeat z-1"
             style={{ backgroundImage: "url('/images/illustration.svg')" }}
-          ></div>
+        ></div>
         <Container className="px-5 md:px-10 lg:px-24">
-          {/* Tab Navigation */}
-          <div className="flex justify-center gap-8 mb-12 flex-wrap">
-            {PortfolioTabItem.map((tab, index) => (
-              <button
-                key={tab.tabID}
-                onClick={() => {
-                  setActiveTab(index);
-                  setVisibleItems(12);
-                }}
-                className={`text-lg font-medium transition-colors ${
-                  activeTab === index
-                    ? 'text-primary2  border-primary2'
-                    : 'text-secondary hover:text-primary2'
-                }`}
-              >
-                {tab.title}
-              </button>
-            ))}
+          {/* Tab Navigation - scrollable on mobile, centered on desktop */}
+          <div className="w-full overflow-x-auto scrollbar-none mb-12">
+            <div className="flex flex-nowrap gap-4 min-w-max justify-center sm:justify-center">
+              {PortfolioTabItem.map((tab, index) => (
+                <button
+                  key={tab.tabID}
+                  onClick={() => {
+                    setActiveTab(index);
+                    setVisibleItems(12);
+                  }}
+                  className={`text-lg font-medium transition-colors whitespace-nowrap px-4 py-2 ${
+                    activeTab === index
+                      ? 'text-primary2 border-b-2 border-primary2'
+                      : 'text-secondary hover:text-primary2'
+                  }`}
+                  style={{ minWidth: 100 }}
+                >
+                  {tab.title}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Gallery Grid - 3 columns */}

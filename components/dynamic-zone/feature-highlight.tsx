@@ -9,7 +9,7 @@ export const FeatureHighlight = ({ title, description, bottom_image, right_image
        <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-10 lg:gap-32">
         
         <div className="mt-[35px] md:mt-0 flex flex-col justify-between"> 
-          <div className="sm:mt-0 lg:mt-20">
+          <div className="mt-0">
             <h3 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold lg:mb-10  text-secondary">
               {title}
             </h3>
@@ -32,7 +32,7 @@ export const FeatureHighlight = ({ title, description, bottom_image, right_image
           </div>
         </div>
 
-        <div className="relative pb-0 lg:pb-0 mt-0 lg:mt-[-34px]">
+        <div className="relative pb-0 lg:pb-0 mt-0">
           <div className="aspect-[4/3] w-full">
             {right_image?.url && (
               <Image

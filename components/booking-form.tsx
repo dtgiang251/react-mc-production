@@ -106,7 +106,7 @@ export const BookingForm = ({
 
   return (
     <form onSubmit={handleSubmit} className={`booking-form text-sm ${className || ''}`}>
-      <h3 className="text-xl font-semibold mb-4 leading-none text-gray">{data?.booking_title}</h3>
+      <h3 className="text-xl font-semibold mb-8 leading-none text-gray">{data?.booking_title}</h3>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6 mb-6">
         <div>
@@ -191,7 +191,7 @@ export const BookingForm = ({
       </div>
 
       <div className="form-bottom">
-        <div className="flex items-start gap-2 mb-6">
+        <div className="flex items-start gap-2">
           <label className="checkbox-wrap text-xs leading-[14px] opacity-60">
             <input
               type="checkbox"

@@ -208,7 +208,7 @@ export const BookingForm = ({
           type="submit"
           variant="primary"
           disabled={loading}
-          className="hover:text-white relative z-10 text-black text-base md:text-sm transition font-bold duration-200 px-11 py-4 flex items-center justify-center"
+          className="hover:text-white relative z-10 text-black text-base md:text-sm transition font-bold duration-200 px-11 py-4 flex items-center justify-center mt-5"
         >
           {loading ? 'Submitting...' : data?.submit_label}
         </Button>

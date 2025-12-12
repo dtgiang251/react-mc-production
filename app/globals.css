@@ -116,6 +116,10 @@ body {
   @apply text-gray-800;
 }
 
+.hero-booking.booking-form .form-bottom button {
+  @apply !mt-0;
+}
+
 .hero-booking.booking-form .form-bottom {
   @apply flex flex-col lg:flex-row items-start gap-0 lg:gap-6;
 }

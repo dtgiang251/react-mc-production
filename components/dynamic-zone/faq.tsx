@@ -6,7 +6,7 @@ export const FAQ = ({ heading, sub_heading, faqs, image }: { heading: string, su
   return (
     <>
     <section className="bg-secondary pt-20 relative"> 
-    <div id="faqs" className="absolute -top-[120px]"></div>
+    <div id="faqs" className="absolute -top-[200px]"></div>
       <Container className="pr-0 px-5 md:pr-0 md:px-0">
         <div className="flex flex-col md:flex-row">
 

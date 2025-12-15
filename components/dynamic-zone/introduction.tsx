@@ -6,7 +6,7 @@ import Image from 'next/image';
 export const Introduction = ({ title, description, image }: { title: string, description: string, image: { url: string } }) => {
   return (
     <>
-    <div id="about"></div>
+    <div id="about" className="absolute -top-[100px]"></div>
     <Container className="my-25">
       <div className="flex flex-col md:flex-row items-center gap-10 lg:gap-20">
         <div className="w-full md:w-7/12 lg:w-1/3">

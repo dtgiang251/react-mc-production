@@ -35,7 +35,7 @@ export const FAQ = ({ heading, sub_heading, faqs, image }: { heading: string, su
             </article>
 
           
-            <article className="bg-primary px-5 md:px-10 lg:px-15 px-10 md:px-15 pt-15">
+            <article className="bg-primary px-5 md:px-10 lg:px-15 px-10 md:px-15 py-15">
               {(faqs && 
               <ul className="">
                 {faqs.map((faq: { question: string, answer: string }, index: number) => (

@@ -94,7 +94,7 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
 
           <div className={`flex items-center gap-1.5 ${showBackground ? 'text-secondary' : 'text-white'}`}>
             {groupedMenuItems.map((item) => (
-              item.children && item.children.length > 0 ? (
+              Array.isArray(item.children) && item.children.length > 0 ? (
                 <div key={item.text} className="relative group">
                   <NavbarItem href={item.URL as never} target={item.target}>
                     {item.text}
@@ -102,13 +102,13 @@ export const DesktopNavbar = ({ leftNavbarItems, rightNavbarItems, logo, locale 
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </NavbarItem>
-                  <div className="absolute left-[30%] top-full mt-2 min-w-[130px] bg-white/20 shadow-[0px_4px_20px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
+                  <div className="absolute left-[30%] top-full mt-2 min-w-[130px] bg-[#f8f8f7] shadow-[0px_4px_20px_rgba(0,0,0,0.1)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2 px-2">
                     {item.children.map((child, index) => (
                       <NavbarItem 
                         key={child.text}
                         href={child.URL as never}
                         target={child.target}
-                        className={`block font-normal text-sm px-4 py-0 text-left ${showBackground ? 'text-secondary' : 'text-white'}transition-colors relative`}
+                        className={`block font-normal text-sm px-0 py-0 text-left ${showBackground ? 'text-[#504847]' : 'text-[#504847]'} transition-colors ${item.children && index !== item.children.length - 1 ? 'border-b' : ''} rounded-none border-[#9c9b9a] relative`}
                       >
                         {child.text}
                       </NavbarItem>

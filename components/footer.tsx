@@ -17,7 +17,7 @@ export const Footer = ({ data, locale }: { data: any, locale: string }) => {
   return (
     <div className="relative">
       <div  id="booking" className="absolute -top-[80px] z-0 opacity-0 visibility-hidden"></div>
-      <div className="pt-20 relative bg-secondary text-white bg-repeat" style={{ backgroundImage: "url('/images/bg_footer.png')" }}>
+      <div className="pt-[74px] relative bg-secondary text-white bg-repeat" style={{ backgroundImage: "url('/images/bg_footer.png')" }}>
 
         <Container className="footer-main text-base">
           <div className="flex flex-col md:flex-row gap-10 lg:gap-15">

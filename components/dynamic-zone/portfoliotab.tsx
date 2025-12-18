@@ -139,9 +139,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
   return (
     <>
       <section className="bg-white relative py-20">
-        <div className="hidden sm:block absolute left-0 top-0 max-w-[487px] w-full h-[172px] md:h-[172px] bg-cover bg-center bg-no-repeat z-1"
-            style={{ backgroundImage: "url('/images/illustration.svg')" }}
-        ></div>
+        
         <Container className="px-5 md:px-10 lg:px-24 relative z-10">
           {/* Tab Navigation - scrollable on mobile, centered on desktop */}
           <div className="w-full overflow-x-auto scrollbar-none mb-12">

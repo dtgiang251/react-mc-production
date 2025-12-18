@@ -15,7 +15,7 @@ export const VideoAndTextSection = ({ title, content, image, video }: { title: s
 
   const blocks = {
     paragraph: ({ children, ...props }: any) => (
-      <p className="mb-4 whitespace-pre-line" {...props}>{children}</p>
+      <p className="mb-2 whitespace-pre-line" {...props}>{children}</p>
     ),
     text: ({ text }: any) => <TextRenderer text={text} />
   };
@@ -42,7 +42,7 @@ export const VideoAndTextSection = ({ title, content, image, video }: { title: s
 
           
           <div className="flex flex-col justify-center">
-            <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-inter font-bold mb-5 md:mb-8 text-secondary">
+            <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-inter font-bold mb-5 text-secondary">
               {title}
             </h2> 
             <div className="font-inter font-normal text-gray-500 leading-relaxed text-base mb-6">

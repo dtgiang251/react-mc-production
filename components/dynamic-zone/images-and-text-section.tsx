@@ -49,7 +49,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
 
           
           <div className="flex flex-col justify-center md:w-6/12 lg:w-5/12">
-            <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] lg:mt-10 font-bold mb-5 md:mb-12 lg:mb-16 text-secondary">
+            <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold mb-5 text-secondary">
               {title}
             </h2>
             <p className="font-normal text-gray-500 leading-relaxed text-base">{description}</p>

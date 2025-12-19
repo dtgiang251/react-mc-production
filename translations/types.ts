@@ -16,6 +16,7 @@ export type TranslationKeys = {
   contact_soon: string;
   copyright: string;
   new_reservation_request: string;
+  loadmore: string;
 };
 
 export type Translations = {

@@ -7,6 +7,11 @@ import { useSearchParams } from 'next/navigation';
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 
+import { i18n } from "@/i18n.config";
+import { useParams } from 'next/navigation';
+import { translations } from '@/translations/common';
+import { Locale } from '@/translations/types';
+
 // Helper to get YouTube video ID from URL
 const getYoutubeVideoId = (url: string) => {
   const match = url.match(/v=([^&]+)/);
@@ -32,6 +37,9 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(12);
   const [mediaType, setMediaType] = useState<'video' | 'image' | null>(null);
+
+  const params = useParams();
+  const currentLocale = (params?.locale as Locale) || (i18n.defaultLocale as Locale);
 
   // Set active tab dựa trên query parameter khi component mount
   useEffect(() => {
@@ -206,7 +214,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
                 onClick={loadMore}
                 className="bg-primary hover:bg-primary/90 text-secondary font-semibold px-8 py-3 rounded-lg transition-colors"
               >
-                Load more
+                {translations[currentLocale]?.loadmore || translations[i18n.defaultLocale].loadmore}Load more
               </button>
             </div>
           )}

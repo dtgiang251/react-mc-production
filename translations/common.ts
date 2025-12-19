@@ -16,7 +16,8 @@ export const translations: Translations = {
     message: "Message",
     contact_soon: "We will contact you very soon.",
     copyright: "Marc Careri. All rights reserved.",
-    new_reservation_request: "New reservation request"
+    new_reservation_request: "New reservation request",
+    loadmore: "Load more"
   },
   fr: {
     selectService: "Choisissez un service",
@@ -33,7 +34,8 @@ export const translations: Translations = {
     message: "Message",
     contact_soon: "Nous vous contacterons très prochainement.",
     copyright: "Marc Careri. Tous droits réservés.",
-    new_reservation_request: "Nouvelle demande de réservation"
+    new_reservation_request: "Nouvelle demande de réservation",
+    loadmore: "Charger plus"
   },
   de: {
     selectService: "Dienstleistung auswählen", 
@@ -50,6 +52,7 @@ export const translations: Translations = {
     message: "Nachricht",
     contact_soon: "Wir werden Sie in Kürze kontaktieren.",
     copyright: "Marc Careri. Alle Rechte vorbehalten.",
-    new_reservation_request: "Neue Reservierungsanfrage"
+    new_reservation_request: "Neue Reservierungsanfrage",
+    loadmore: "Mehr laden"
   }
 };

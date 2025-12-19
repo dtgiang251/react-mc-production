@@ -20,17 +20,16 @@ const inter = Inter({
     weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-
 export async function generateMetadata({
     params,
 }: {
-    params: { locale: string; slug: string };
+    params:  { locale: string; slug: string };
 }): Promise<Metadata> {
     const pageData = await fetchContentType(
         'global',
         {
             filters: { locale: params.locale },
-            populate: "seo.metaImage",
+            populate: "seo. metaImage",
         },
         true
     );
@@ -38,19 +37,38 @@ export async function generateMetadata({
     const seo = pageData?.seo;
     const metadata = generateMetadataObject(seo);
     
+    // 🔥 Dùng absolute URLs - Giải pháp chắc chắn nhất
+    const siteUrl = process.env.WEBSITE_URL || 'https://mc-production.lu/';
+    
     return {
         ...metadata,
+        metadataBase: new URL(siteUrl),
         icons: {
             icon: [
-                { url: '/favicon.ico' },
-                { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-                { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-                { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-                { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+                // ⭐ QUAN TRỌNG: Dùng absolute URLs cho tất cả
+                { url: `${siteUrl}/favicon.ico`, sizes: 'any' },
+                { url: `${siteUrl}/favicon-16x16.png`, sizes: '16x16', type: 'image/png' },
+                { url: `${siteUrl}/favicon-32x32.png`, sizes: '32x32', type: 'image/png' },
+                // Google yêu cầu ít nhất 1 favicon >= 48x48px
+                { url: `${siteUrl}/favicon-48x48.png`, sizes: '48x48', type: 'image/png' },
+                { url:  `${siteUrl}/android-chrome-192x192.png`, sizes: '192x192', type: 'image/png' },
+                { url: `${siteUrl}/android-chrome-512x512.png`, sizes: '512x512', type: 'image/png' },
             ],
             apple: [
-                { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+                { url: `${siteUrl}/apple-touch-icon.png`, sizes: '180x180', type: 'image/png' },
             ],
+            shortcut:  [`${siteUrl}/favicon.ico`],
+        },
+        robots: {
+            index: true,
+            follow: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
         },
     };
 }
@@ -69,21 +87,17 @@ export default async function LocaleLayout({
     }, true);
 
     const cookieTranslations = {
-        title: pageData?.cookie_consent?.title || 'Cookies',
-        description: pageData?.cookie_consent?.description || 'We use cookies to improve your experience.',
-        accept: pageData?.cookie_consent?.accept_button || 'Accept',
-        decline: pageData?.cookie_consent?.decline_button || 'Decline'
+        title:  pageData?.cookie_consent?.title || 'Cookies',
+        description: pageData?. cookie_consent?.description || 'We use cookies to improve your experience.',
+        accept: pageData?.cookie_consent?. accept_button || 'Accept',
+        decline: pageData?.cookie_consent?. decline_button || 'Decline'
     };
-
-    //console.log('pageData:', pageData);
 
     return (
         <html lang={currentLocale}>
             <head>
-                {/* Robots tag for Google indexing */}
-                <meta name="robots" content="index, follow" />
                 {/* Google tag (gtag.js) */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-HYTK9KVPTG"></script>
+                <script async src="https://www.googletagmanager.com/gtag/js? id=G-HYTK9KVPTG"></script>
                 <script
                   dangerouslySetInnerHTML={{
                     __html: `

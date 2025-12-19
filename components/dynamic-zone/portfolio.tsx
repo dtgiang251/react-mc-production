@@ -4,11 +4,14 @@ import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import Slider from "react-slick";
 import { Button } from "@/components/elements/button";
-import { useRef, useState, useMemo } from "react";
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+import { useRef, useState, useMemo, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'plyr-react/plyr.css';
+
+// Dynamic import Plyr với ssr: false
+const Plyr = dynamic(() => import('plyr-react'), { ssr: false, loading: () => <div>Loading video...</div> });
 
 // Helper to get YouTube video ID from URL
 const getYoutubeVideoId = (url: string) => {
@@ -21,6 +24,11 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
   const sliderRef = useRef<Slider | null>(null);
   const [showVideo, setShowVideo] = useState(false);
   const [currentVideoId, setCurrentVideoId] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const settings = {
     dots: false,
@@ -46,7 +54,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
       ],
     },
     options: {
-      autoplay: true,
+      autoplay: false,
       controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
     },
   }), [currentVideoId]);
@@ -259,7 +267,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
           </div>
 
           {/* Video Popup with Plyr */}
-          {showVideo && currentVideoId && (
+          {isMounted && showVideo && currentVideoId && (
             <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" 
                  onClick={() => setShowVideo(false)}>
               <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
@@ -267,7 +275,7 @@ export const Portfolio = ({ Slider_Item }: { Slider_Item: any[] }) => {
                   onClick={() => setShowVideo(false)}
                   className="absolute top-[-50px] right-0 text-white text-3xl hover:text-gray-300 z-10"
                 >✕</button>
-                <Plyr {...plyrProps} />
+                {currentVideoId && <Plyr {...plyrProps} />}
               </div>
             </div>
           )}

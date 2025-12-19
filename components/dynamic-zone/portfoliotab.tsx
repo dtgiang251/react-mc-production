@@ -4,8 +4,11 @@ import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
-import Plyr from "plyr-react";
+import dynamic from 'next/dynamic';
 import "plyr-react/plyr.css";
+
+// Dynamic import Plyr với ssr: false
+const Plyr = dynamic(() => import('plyr-react'), { ssr: false, loading: () => <div>Loading video...</div> });
 
 import { i18n } from "@/i18n.config";
 import { useParams } from 'next/navigation';
@@ -37,9 +40,13 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleItems, setVisibleItems] = useState(12);
   const [mediaType, setMediaType] = useState<'video' | 'image' | null>(null);
-
+  const [isMounted, setIsMounted] = useState(false);
   const params = useParams();
   const currentLocale = (params?.locale as Locale) || (i18n.defaultLocale as Locale);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Set active tab dựa trên query parameter khi component mount
   useEffect(() => {
@@ -71,7 +78,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
         ],
       },
       options: {
-        autoplay: true,
+        autoplay: false,
         controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
       },
     };
@@ -252,9 +259,9 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
               <div className="w-full max-w-6xl flex flex-col items-center gap-4">
                 {/* Image or Video */}
                 <div className="relative w-full min-h-[400px] flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
-                  {mediaType === 'video' && currentVideoId && plyrProps ? (
+                  {mediaType === 'video' && currentVideoId && plyrProps && isMounted ? (
                     <div className="aspect-video w-full">
-                      <Plyr key={currentVideoId} {...plyrProps} />
+                      {currentVideoId && <Plyr key={currentVideoId} {...plyrProps} />}
                     </div>
                   ) : mediaType === 'video' && currentItem.video_mp4?.url ? (
                     <div className="aspect-video w-full">

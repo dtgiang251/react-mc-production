@@ -36,6 +36,7 @@ export async function generateMetadata({
 
     const seo = pageData?.seo;
     const metadata = generateMetadataObject(seo);
+    //console.log('Generated metadata:', metadata);
     
     // 🔥 Dùng absolute URLs - Giải pháp chắc chắn nhất
     const siteUrl = process.env.WEBSITE_URL || 'https://mc-production.lu/';

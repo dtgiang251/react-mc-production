@@ -2,7 +2,7 @@
 import { Container } from "@/components/container";
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import "plyr-react/plyr.css";
@@ -43,6 +43,7 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
   const [isMounted, setIsMounted] = useState(false);
   const params = useParams();
   const currentLocale = (params?.locale as Locale) || (i18n.defaultLocale as Locale);
+  const pageContentRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -58,6 +59,28 @@ export const PortfolioTab = ({ PortfolioTabItem }: { PortfolioTabItem: TabItem[]
       }
     }
   }, [searchParams, PortfolioTabItem]);
+
+  // Set z-index for #page-content when popup opens/closes
+  useEffect(() => {
+    if (!pageContentRef.current) {
+      pageContentRef.current = document.getElementById("page-content") as HTMLElement | null;
+    }
+    if (showGallery && pageContentRef.current) {
+      pageContentRef.current.style.zIndex = "999";
+    } else if (pageContentRef.current) {
+      pageContentRef.current.style.zIndex = "";
+    }
+  }, [showGallery]);
+
+  // ESC to close popup
+  useEffect(() => {
+    if (!showGallery) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowGallery(false);
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [showGallery]);
 
   const currentItems = PortfolioTabItem[activeTab]?.PortfolioItem || [];
   const displayedItems = currentItems.slice(0, visibleItems);

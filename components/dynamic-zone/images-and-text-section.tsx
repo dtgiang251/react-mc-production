@@ -246,6 +246,50 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
     </section>
     )}
 
+    {layout === "Heading Top - Features Top - BigImage" && (
+    <section className="bg-white py-20 md:py-25 px-2">
+    <Container>
+      <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold mb-5 text-secondary text-center">
+        {title}
+      </h2>
+      <p className="max-w-[800px] mx-auto font-normal text-secondary text-center leading-relaxed text-base">{description}</p>
+
+      {features_title && (
+        <h3 className="font-semibold text-xl text-white mt-6 mb-6">{features_title}</h3>
+      )}
+      {features && features.length > 0 && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2 my-15">
+        {features.map((feature, idx) => (
+          <div key={idx} className="flex items-start gap-[6px]">
+            <div className="mt-[6px]">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C11.6355 15 15 11.6355 15 7.5C15 3.3645 11.6355 0 7.5 0ZM6.00075 10.8098L3.216 8.031L4.275 6.969L5.99925 8.69025L9.96975 4.71975L11.0303 5.78025L6.00075 10.8098Z" fill="#D0BFAC"/></svg>
+            </div>
+            <div className="flex flex-col">
+              <h4 className="text-secondary font-normal text-base">{feature.title}</h4>
+              <p className="text-base text-secondary">{feature.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      )}
+        
+      <div className="relative">
+        {main_image?.url && (
+          <Image 
+            src={strapiImage(main_image.url)}
+            alt=""
+            width={1000}
+            height={1000}
+            className="w-full h-auto"
+          />
+        )}
+      </div>
+
+    </Container>
+    </section>
+    )}
+
 
     </>
   );

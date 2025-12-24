@@ -15,6 +15,8 @@ interface Props {
 const componentMapping: { [key: string]: any } = {
   'dynamic-zone.hero': dynamic(() => import('./hero').then(mod => mod.Hero), { ssr: false }),
   'dynamic-zone.features-video': dynamic(() => import('./features-video').then(mod => mod.FeaturesVideo), { ssr: false }),
+  'dynamic-zone.features3-d': dynamic(() => import('./features3d').then(mod => mod.Features3D), { ssr: false }),
+  'dynamic-zone.features2-images': dynamic(() => import('./features2-images').then(mod => mod.Features2Images), { ssr: false }),
   'dynamic-zone.before-after-section': dynamic(() => import('./before-after-section').then(mod => mod.BeforeAfterSection), { ssr: false }),
   'dynamic-zone.slider-gallery': dynamic(() => import('./slider-gallery').then(mod => mod.SliderGallery), { ssr: false }),
   'dynamic-zone.portfolio-tab': dynamic(() => import('./portfoliotab').then(mod => mod.PortfolioTab), { ssr: false }),

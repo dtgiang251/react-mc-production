@@ -18,7 +18,7 @@ function RenderVideo({
   handlePlay: () => void;
 }) {
   return (
-    <div className="relative w-full max-w-[520px]">
+    <div className="relative w-full max-w-[570px]">
       <video
         ref={videoRef}
         src={strapiImage(videoUrl)}
@@ -93,9 +93,10 @@ export const FeaturesVideo = ({
         <h2 className="text-[40px] md:text-[48px] font-bold text-primary text-center mb-5">
           {title}
         </h2>
-        <p className="text-white/80 text-lg md:text-xl text-center max-w-3xl mx-auto mb-12">
-          {description}
-        </p>
+        <div
+          className="text-white/80 text-lg md:text-xl text-center max-w-3xl mx-auto mb-12"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
         <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-start justify-center">
           <div className="flex-1">
             {features_title && (
@@ -145,10 +146,56 @@ export const FeaturesVideo = ({
     </section>
     )}
 
+    {layout == "Black_HeadingTop_FeaturesLeft1Column_VideoRight" && (
+    <section className="bg-secondary py-20 md:py-25">
+      <Container>
+        <h2 className="text-[40px] md:text-[48px] font-bold text-primary text-center mb-5">
+          {title}
+        </h2>
+        <div
+          className="text-white/80 text-lg md:text-xl text-center max-w-3xl mx-auto mb-12"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+        <div className="flex flex-col md:flex-row gap-12 md:gap-20 items-start justify-center">
+          <div className="flex-1">
+            {features_title && (
+              <h3 className="text-white/60 text-xl font-semibold mb-6">{features_title}</h3>
+            )}
+            <div className="grid grid-cols-1 gap-10">
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-start gap-3">
+                  <span className="mt-1">
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C14.6355 18 18 14.6355 18 10.5C18 6.3645 14.6355 3 10.5 3ZM9.00075 13.8098L6.216 11.031L7.275 9.969L8.99925 11.6903L12.9698 7.71975L14.0303 8.78025L9.00075 13.8098Z" fill="#D0BFAC"/></svg>
+                  </span>
+                  <div>
+                    <div className="text-primary text-base">{feature.title}</div>
+                    <div className="text-white/80 text-base">{feature.description}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 flex justify-center items-center">
+            {video?.url && (
+              <RenderVideo
+                videoUrl={video.url}
+                videoRef={videoRef}
+                paused={paused}
+                handlePause={handlePause}
+                handlePlay={handlePlay}
+              />
+            )}
+          </div>
+        </div>
+      </Container>
+    </section>
+    )}
+
     {layout == "VideoLeft_FeaturesRight" && (
     <section className="bg-primary py-20 md:py-25">
         <Container>
-            <div className="flex flex-col md:flex-row items-center gap-25">
+            <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-25">
                 <div className="flex-1 flex justify-center items-center">
                     {video?.url && (
                     <RenderVideo
@@ -164,9 +211,10 @@ export const FeaturesVideo = ({
                     <h2 className="text-[40px] md:text-[48px] font-bold text-secondary mb-5">
                     {title}
                     </h2>
-                    <p className="text-secondary text-lg md:text-xl max-w-3xl mx-auto mb-8">
-                    {description}
-                    </p>
+                    <div
+                      className="text-secondary text-lg md:text-xl max-w-3xl mx-auto mb-8 [&_img]:!max-w-full md:[&_img]:!max-w-none [&_img]:h-auto"
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
                     <div className="flex flex-col gap-2">
                         {features.map((feature, idx) => (
                             <div key={idx} className="flex items-start gap-3">
@@ -190,14 +238,15 @@ export const FeaturesVideo = ({
     {layout == "Black_HeadingLeft_VideoRight" && (
     <section className="bg-secondary py-20 md:py-25">
         <Container>
-            <div className="flex flex-col md:flex-row items-center gap-25">
+            <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-25">
                 <div className="flex-1">
                     <h2 className="text-[40px] md:text-[48px] font-bold text-primary mb-5">
                     {title}
                     </h2>
-                    <p className="text-white text-lg md:text-xl max-w-3xl mx-auto mb-8">
-                    {description}
-                    </p>
+                    <div
+                      className="text-white text-lg md:text-xl max-w-3xl mx-auto mb-8"
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
                     <div className="flex flex-col gap-2">
                         {features.map((feature, idx) => (
                             <div key={idx} className="flex items-start gap-3">
@@ -208,6 +257,50 @@ export const FeaturesVideo = ({
                             <div>
                                 <div className="text-white text-base">{feature.title}</div>
                                 <div className="text-white text-base">{feature.description}</div>
+                            </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="flex-1 flex justify-center items-center">
+                    {video?.url && (
+                    <RenderVideo
+                        videoUrl={video.url}
+                        videoRef={videoRef}
+                        paused={paused}
+                        handlePause={handlePause}
+                        handlePlay={handlePlay}
+                    />
+                    )}
+                </div>
+            </div>            
+        </Container>
+    </section>
+    )}
+
+    
+    {layout == "White_HeadingLeft_VideoRight" && (
+    <section className="bg-white py-20 md:py-25">
+        <Container>
+            <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-25">
+                <div className="flex-1">
+                    <h2 className="text-[40px] md:text-[48px] font-bold text-secondary mb-5">
+                    {title}
+                    </h2>
+                    <div
+                      className="text-secondary text-lg md:text-xl max-w-3xl mx-auto mb-8"
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
+                    <div className="flex flex-col gap-2">
+                        {features.map((feature, idx) => (
+                            <div key={idx} className="flex items-start gap-3">
+                            <span className="mt-1">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C14.6355 18 18 14.6355 18 10.5C18 6.3645 14.6355 3 10.5 3ZM9.00075 13.8098L6.216 11.031L7.275 9.969L8.99925 11.6903L12.9698 7.71975L14.0303 8.78025L9.00075 13.8098Z" fill="#1B2431"/></svg>
+
+                            </span>
+                            <div>
+                                <div className="text-secondary text-base">{feature.title}</div>
+                                <div className="text-secondary text-base">{feature.description}</div>
                             </div>
                             </div>
                         ))}

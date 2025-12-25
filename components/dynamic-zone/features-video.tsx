@@ -118,9 +118,8 @@ export const FeaturesVideo = ({
               {rightFeatures.map((feature, idx) => (
                 <div key={mid + idx} className="flex items-start gap-3">
                   <span className="mt-1">
-                    <svg width="20" height="20" viewBox="0 0 15 15" fill="none">
-                      <path d="M7.5 0C3.3645 0 0 3.3645 0 7.5C0 11.6355 3.3645 15 7.5 15C11.6355 15 15 11.6355 15 7.5C15 3.3645 11.6355 0 7.5 0ZM6.00075 10.8098L3.216 8.031L4.275 6.969L5.99925 8.69025L9.96975 4.71975L11.0303 5.78025L6.00075 10.8098Z" fill="#D0BFAC"/>
-                    </svg>
+                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 3C6.3645 3 3 6.3645 3 10.5C3 14.6355 6.3645 18 10.5 18C14.6355 18 18 14.6355 18 10.5C18 6.3645 14.6355 3 10.5 3ZM9.00075 13.8098L6.216 11.031L7.275 9.969L8.99925 11.6903L12.9698 7.71975L14.0303 8.78025L9.00075 13.8098Z" fill="#D0BFAC"/></svg>
                   </span>
                   <div>
                     <div className="text-white text-base">{feature.title}</div>

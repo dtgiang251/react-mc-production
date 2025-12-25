@@ -184,7 +184,7 @@ export const Hero = ({
                 </div>
                 <BookingForm 
                   data={footerData}
-                  className="hero-booking"
+                  className="hero-booking [&_.select-service]:hidden"
                 />
               </div>
             </div>

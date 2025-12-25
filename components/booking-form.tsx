@@ -44,10 +44,6 @@ export const BookingForm = ({
       newErrors.phone = data.form_message?.required_fields || 'This field is required';
     }
     
-    if (!formData.service) {
-      newErrors.service = data.form_message?.required_fields || 'This field is required';
-    }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -124,7 +120,7 @@ export const BookingForm = ({
             <p className="text-red-500 text-xs mt-1">{errors.name}</p>
           )}
         </div>
-        <div>
+        <div className="select-service">
           <label className="text-gray-300">{data?.services_label}
             <select 
               className={`w-full mt-1 px-2 py-3 leading-[18px] rounded-lg bg-transparent border ${
@@ -191,7 +187,7 @@ export const BookingForm = ({
       </div>
 
       <div className="form-bottom">
-        <div className="flex items-start gap-2">
+        <div className="flex items-start gap-2 mb-3">
           <label className="checkbox-wrap text-xs leading-[14px] opacity-60">
             <input
               type="checkbox"

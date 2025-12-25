@@ -53,6 +53,14 @@ export const Hero = ({
   // Lấy dữ liệu của slide hiện tại
   const current = slider?.[currentSlide] || {};
 
+  const setShowMobileFormWithZIndex = (show: boolean) => {
+    setShowMobileForm(show);
+    const pageContent = document.getElementById("page-content");
+    if (pageContent) {
+      pageContent.style.zIndex = show ? "9999" : "";
+    }
+  };
+
   return (
     <div className="relative h-[100%] md:min-h-[800px] lg:h-screen pt-[200px] pb-10 sm:pb-25">
       {/* Background Slider */}
@@ -153,7 +161,7 @@ export const Hero = ({
 
           {/* Show Booking form on mobile */}
           <div className="space-x-2 items-center justify-center mt-10 flex md:hidden">
-            <Button as="button" onClick={() => setShowMobileForm(true)}>
+            <Button as="button" onClick={() => setShowMobileFormWithZIndex(true)}>
               {translations[currentLocale]?.bookNow || translations[i18n.defaultLocale].bookNow}
             </Button>
           </div>
@@ -173,7 +181,7 @@ export const Hero = ({
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-[24px] leading-tight text-secondary font-bold">{form_title}</h3>
                   <button 
-                    onClick={() => setShowMobileForm(false)}
+                    onClick={() => setShowMobileFormWithZIndex(false)}
                     className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100"
                   >
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

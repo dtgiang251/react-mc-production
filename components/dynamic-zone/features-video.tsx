@@ -26,6 +26,7 @@ function RenderVideo({
         loop
         muted
         controls={false}
+        playsInline
         className="w-full h-[400px] object-cover bg-black"
         poster=""
       />

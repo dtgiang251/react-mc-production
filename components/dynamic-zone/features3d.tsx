@@ -35,7 +35,7 @@ export const Features3D = ({
             />
         </div>
         <div className="flex flex-col md:flex-row mt-25 gap-12 md:gap-20 items-start justify-center">
-          <div className="flex-1">
+          <div className="flex-1 max-md:w-full">
             {features_title && (
               <h3 className="text-white/60 text-xl font-semibold mb-6">{features_title}</h3>
             )}
@@ -54,7 +54,7 @@ export const Features3D = ({
               ))}
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center items-center max-md:w-full">
             <iframe id="realsee-container"
                 src={iframe_url}
                 width="100%" 

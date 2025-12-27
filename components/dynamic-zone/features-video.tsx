@@ -129,7 +129,7 @@ export const FeaturesVideo = ({
               ))}
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center items-center max-md:w-full">
             {video?.url && (
               <RenderVideo
                 videoUrl={video.url}
@@ -175,7 +175,7 @@ export const FeaturesVideo = ({
               ))}
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center items-center max-md:w-full">
             {video?.url && (
               <RenderVideo
                 videoUrl={video.url}
@@ -195,7 +195,7 @@ export const FeaturesVideo = ({
     <section className="bg-primary py-20 md:py-25">
         <Container>
             <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-25">
-                <div className="flex-1 flex justify-center items-center">
+                <div className="flex-1 flex justify-center items-center max-md:w-full">
                     {video?.url && (
                     <RenderVideo
                         videoUrl={video.url}
@@ -211,7 +211,7 @@ export const FeaturesVideo = ({
                     {title}
                     </h2>
                     <div
-                      className="text-secondary text-lg md:text-xl max-w-3xl mx-auto mb-8 [&_img]:!max-w-full md:[&_img]:!max-w-none [&_img]:h-auto"
+                      className="text-secondary text-lg md:text-xl max-w-3xl mx-auto mb-8 [&_img]:!max-w-full md:[&_img]:!max-w-none [&_img]:h-auto max-md:[&_img]:!mb-0 max-md:[&_img]:!mr-0"
                       dangerouslySetInnerHTML={{ __html: description }}
                     />
                     <div className="flex flex-col gap-2">
@@ -261,7 +261,7 @@ export const FeaturesVideo = ({
                         ))}
                     </div>
                 </div>
-                <div className="flex-1 flex justify-center items-center">
+                <div className="flex-1 flex justify-center items-center max-md:w-full">
                     {video?.url && (
                     <RenderVideo
                         videoUrl={video.url}
@@ -305,7 +305,7 @@ export const FeaturesVideo = ({
                         ))}
                     </div>
                 </div>
-                <div className="flex-1 flex justify-center items-center">
+                <div className="flex-1 flex justify-center items-center max-md:w-full">
                     {video?.url && (
                     <RenderVideo
                         videoUrl={video.url}

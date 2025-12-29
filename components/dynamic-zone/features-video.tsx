@@ -47,13 +47,59 @@ function RenderVideo({
   );
 }
 
+function RenderMedia({
+  video,
+  image,
+  videoRef,
+  paused,
+  handlePause,
+  handlePlay,
+}: {
+  video?: { url?: string };
+  image?: { url?: string };
+  videoRef: React.RefObject<HTMLVideoElement>;
+  paused: boolean;
+  handlePause: () => void;
+  handlePlay: () => void;
+}) {
+  // ✅ Ưu tiên video
+  if (video?.url) {
+    return (
+      <RenderVideo
+        videoUrl={video.url}
+        videoRef={videoRef}
+        paused={paused}
+        handlePause={handlePause}
+        handlePlay={handlePlay}
+      />
+    );
+  }
+
+  // ✅ Fallback sang image (gif)
+  if (image?.url) {
+    return (
+      <div className="relative w-full max-w-[570px]">
+        <img
+          src={strapiImage(image.url)}
+          alt=""
+          className="w-full h-[400px] object-cover"
+        />
+      </div>
+    );
+  }
+
+  return null;
+}
+
+
 export const FeaturesVideo = ({
   layout = "Black_HeadingTop_FeaturesLeft_VideoRight",
   title,
   description,
   features_title,
   features,
-  video
+  video,
+  image
 }: {
   layout: string;
   title: string;
@@ -61,6 +107,7 @@ export const FeaturesVideo = ({
   features_title: string;
   features: { title: string; description: string }[];
   video: { url: string };
+  image: { url: string };
 }) => {
   
   // Chia features thành 2 cột
@@ -131,15 +178,14 @@ export const FeaturesVideo = ({
             </div>
           </div>
           <div className="flex-1 flex justify-center items-center max-md:w-full">
-            {video?.url && (
-              <RenderVideo
-                videoUrl={video.url}
-                videoRef={videoRef}
-                paused={paused}
-                handlePause={handlePause}
-                handlePlay={handlePlay}
-              />
-            )}
+            <RenderMedia
+              video={video}
+              image={image}
+              videoRef={videoRef}
+              paused={paused}
+              handlePause={handlePause}
+              handlePlay={handlePlay}
+            />
           </div>
         </div>
       </Container>
@@ -177,15 +223,14 @@ export const FeaturesVideo = ({
             </div>
           </div>
           <div className="flex-1 flex justify-center items-center max-md:w-full">
-            {video?.url && (
-              <RenderVideo
-                videoUrl={video.url}
-                videoRef={videoRef}
-                paused={paused}
-                handlePause={handlePause}
-                handlePlay={handlePlay}
-              />
-            )}
+            <RenderMedia
+              video={video}
+              image={image}
+              videoRef={videoRef}
+              paused={paused}
+              handlePause={handlePause}
+              handlePlay={handlePlay}
+            />
           </div>
         </div>
       </Container>
@@ -197,15 +242,14 @@ export const FeaturesVideo = ({
         <Container>
             <div className="flex flex-col lg:flex-row items-center gap-10 md:gap-25">
                 <div className="flex-1 flex justify-center items-center max-md:w-full">
-                    {video?.url && (
-                    <RenderVideo
-                        videoUrl={video.url}
-                        videoRef={videoRef}
-                        paused={paused}
-                        handlePause={handlePause}
-                        handlePlay={handlePlay}
+                    <RenderMedia
+                      video={video}
+                      image={image}
+                      videoRef={videoRef}
+                      paused={paused}
+                      handlePause={handlePause}
+                      handlePlay={handlePlay}
                     />
-                    )}
                 </div>
                 <div className="flex-1">
                     <h2 className="text-[40px] md:text-[48px] font-bold text-secondary mb-5">
@@ -263,15 +307,14 @@ export const FeaturesVideo = ({
                     </div>
                 </div>
                 <div className="flex-1 flex justify-center items-center max-md:w-full">
-                    {video?.url && (
-                    <RenderVideo
-                        videoUrl={video.url}
-                        videoRef={videoRef}
-                        paused={paused}
-                        handlePause={handlePause}
-                        handlePlay={handlePlay}
+                    <RenderMedia
+                      video={video}
+                      image={image}
+                      videoRef={videoRef}
+                      paused={paused}
+                      handlePause={handlePause}
+                      handlePlay={handlePlay}
                     />
-                    )}
                 </div>
             </div>            
         </Container>
@@ -307,15 +350,14 @@ export const FeaturesVideo = ({
                     </div>
                 </div>
                 <div className="flex-1 flex justify-center items-center max-md:w-full">
-                    {video?.url && (
-                    <RenderVideo
-                        videoUrl={video.url}
-                        videoRef={videoRef}
-                        paused={paused}
-                        handlePause={handlePause}
-                        handlePlay={handlePlay}
+                    <RenderMedia
+                      video={video}
+                      image={image}
+                      videoRef={videoRef}
+                      paused={paused}
+                      handlePause={handlePause}
+                      handlePlay={handlePlay}
                     />
-                    )}
                 </div>
             </div>            
         </Container>

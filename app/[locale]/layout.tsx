@@ -82,7 +82,6 @@ export default async function LocaleLayout({
     params: { locale: string };
 }) {
     const currentLocale = locale || i18n.defaultLocale;
-    
     const pageData = await fetchContentType('global', { 
         filters: { locale: currentLocale }
     }, true);
@@ -95,45 +94,22 @@ export default async function LocaleLayout({
     };
 
     return (
-        <html lang={currentLocale}>
-            <head>
-                {/* Google tag (gtag.js) */}
-                <script async src="https://www.googletagmanager.com/gtag/js? id=G-HYTK9KVPTG"></script>
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', 'G-HYTK9KVPTG');
-                    `,
-                  }}
+        <ViewTransitions>
+            <CartProvider>
+                <Navbar 
+                    data={pageData?.navbar || {}} 
+                    footer={pageData?.footer || {}} 
+                    locale={currentLocale} 
                 />
-            </head>
-            <ViewTransitions>
-                <CartProvider>
-                    <body
-                        className={cn(
-                            inter.className,
-                            "bg-white antialiased h-full w-full"
-                        )}
-                    >
-                        <Navbar 
-                            data={pageData?.navbar || {}} 
-                            footer={pageData?.footer || {}} 
-                            locale={currentLocale} 
-                        />
-                        <FooterProvider data={pageData?.footer || {}}>
-                            {children}
-                        </FooterProvider>
-                        <Footer 
-                            data={pageData?.footer || {}} 
-                            locale={currentLocale} 
-                        />
-                        <CookieConsent translations={cookieTranslations} />
-                    </body>
-                </CartProvider>
-            </ViewTransitions>
-        </html>
+                <FooterProvider data={pageData?.footer || {}}>
+                    {children}
+                </FooterProvider>
+                <Footer 
+                    data={pageData?.footer || {}} 
+                    locale={currentLocale} 
+                />
+                <CookieConsent translations={cookieTranslations} />
+            </CartProvider>
+        </ViewTransitions>
     );
 }

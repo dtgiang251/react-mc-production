@@ -1,7 +1,9 @@
+"use client";
 import { Container } from "@/components/container";
 import { strapiImage } from '@/lib/strapi/strapiImage';
 import Image from 'next/image';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
+import React, { useRef, useState } from "react";
 
 type FeatureItem = {
   before: { url: string; alternativeText?: string };
@@ -9,6 +11,7 @@ type FeatureItem = {
   title: string;
   description: string;
   features?: { title: string; description: string }[];
+  video: { url: string };
 };
 
 type BeforeAfterSectionProps = {
@@ -17,11 +20,77 @@ type BeforeAfterSectionProps = {
   features: FeatureItem[];
 };
 
+
+// Tách phần render video thành 1 hàm riêng
+function RenderVideo({
+  videoUrl,
+  videoRef,
+  paused,
+  handlePause,
+  handlePlay,
+}: {
+  videoUrl: string;
+  videoRef: React.RefObject<HTMLVideoElement>;
+  paused: boolean;
+  handlePause: () => void;
+  handlePlay: () => void;
+}) {
+  return (
+    <div className="relative w-full max-w-[570px]">
+      <video
+        ref={videoRef}
+        src={strapiImage(videoUrl)}
+        autoPlay
+        loop
+        muted
+        controls={false}
+        playsInline
+        className="w-full h-[400px] object-cover bg-black"
+        poster=""
+      />
+      <button
+        type="button"
+        onClick={!paused ? handlePause : handlePlay}
+        className="absolute inset-0 z-10 bg-transparent rounded-[10px] cursor-pointer"
+        aria-label="Pause video"
+      >
+        {!paused && (
+          <svg className="absolute bottom-[15px] right-[15px]" width="10" height="12" viewBox="0 0 10 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 11.6667H3.33333V0H0V11.6667ZM6.66667 0V11.6667H10V0H6.66667Z" fill="white"/></svg>
+        )}
+        {paused && (
+          <svg className="absolute bottom-[15px] right-[15px]" width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.2321 6.56901L1.73205 0.569011C1.36754 0.341509 0.842949 0.538012 0.842949 0.987017V13.013C0.842949 13.462 1.36754 13.6585 1.73205 13.431L11.2321 7.43101C11.5966 7.20351 11.5966 6.77651 11.2321 6.56901Z" fill="white"/></svg>
+        )}
+      </button>
+    </div>
+  );
+}
+
 export const BeforeAfterSection = ({
   title,
   description,
   features,
 }: BeforeAfterSectionProps) => {
+
+  
+  // Video controls
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [paused, setPaused] = useState(false);
+
+  const handlePause = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      setPaused(true);
+    }
+  };
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPaused(false);
+    }
+  };
+
+
   // Custom handle component
   const CustomHandle = () => (
     <div className="flex items-center justify-start h-[53px]">
@@ -53,6 +122,8 @@ export const BeforeAfterSection = ({
     </div>
   );
 
+
+
   return (
     <section className="bg-white py-20 md:py-25 px-2">
       <Container>
@@ -68,27 +139,37 @@ export const BeforeAfterSection = ({
           <div className="flex flex-col gap-15 w-full">
             {features.map((item, idx) => (
               <div key={idx} className="flex flex-col gap-25 items-center w-full">
-                {/* Before/After Images */}
-                <div className="w-full mx-auto mb-8 [&_a]:transition-none [&_button]:transition-none">
-                  <ReactCompareSlider
-                    itemOne={
-                      <ReactCompareSliderImage
-                        src={strapiImage(item.before.url)}
-                        alt={item.before.alternativeText || "Before"}
-                        style={{ objectFit: "cover", width: "100%", height: "470px" }}
-                      />
-                    }
-                    itemTwo={
-                      <ReactCompareSliderImage
-                        src={strapiImage(item.after.url)}
-                        alt={item.after.alternativeText || "After"}
-                        style={{ objectFit: "cover", width: "100%", height: "470px" }}
-                      />
-                    }
-                    style={{ width: "100%", height: "470px" }}
-                    handle={<CustomHandle />}
+                {/* Before/After Images or Video */}
+                {(item.before?.url && item.after?.url) ? (
+                  <div className="w-full mx-auto mb-8 [&_a]:transition-none [&_button]:transition-none">
+                    <ReactCompareSlider
+                      itemOne={
+                        <ReactCompareSliderImage
+                          src={strapiImage(item.before.url)}
+                          alt={item.before.alternativeText || "Before"}
+                          style={{ objectFit: "cover", width: "100%", height: "470px" }}
+                        />
+                      }
+                      itemTwo={
+                        <ReactCompareSliderImage
+                          src={strapiImage(item.after.url)}
+                          alt={item.after.alternativeText || "After"}
+                          style={{ objectFit: "cover", width: "100%", height: "470px" }}
+                        />
+                      }
+                      style={{ width: "100%", height: "470px" }}
+                      handle={<CustomHandle />}
+                    />
+                  </div>
+                ) : item.video?.url ? (
+                  <RenderVideo
+                    videoUrl={item.video.url}
+                    videoRef={videoRef}
+                    paused={paused}
+                    handlePause={handlePause}
+                    handlePlay={handlePlay}
                   />
-                </div>
+                ) : null}
                 {/* Content */}
                 {item.title && (
                 <div className="w-full flex flex-col md:flex-row gap-10">

@@ -162,7 +162,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
                   alt="Main view"
                   width={1000}
                   height={1000}
-                  className="w-full h-[400px] lg:h-[500px] object-cover"
+                  className="w-full h-[400px] lg:h-[500px] object-cover rounded-[10px]"
                 />
               )}
             </div>

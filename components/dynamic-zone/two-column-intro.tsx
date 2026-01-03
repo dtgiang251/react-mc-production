@@ -23,7 +23,7 @@ export const TwoColumnIntro = ({
         {Heading}
       </h2>
       )}
-      <div className={`intro ${layout === "SmallHeading" ? "text-xl" : "text-base"} text-gray-500 ${layout === "NoHeading" ? "md:w-full text-center" : "md:w-1/2 text-center md:text-left"}`}>
+      <div className={`intro ${layout === "SmallHeading" ? "text-xl" : "text-xl"} text-gray-500 ${layout === "NoHeading" ? "md:w-full text-center" : "md:w-1/2 text-center md:text-left"}`}>
         <BlocksRenderer content={Content} />
       </div>
     </Container>

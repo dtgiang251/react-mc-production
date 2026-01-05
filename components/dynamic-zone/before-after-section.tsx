@@ -132,7 +132,7 @@ export const BeforeAfterSection = ({
             <h2 className="font-bold text-[34px] md:text-5xl leading-snug text-secondary text-left md:text-center mb-6">
                 {title}
             </h2>
-            <p className="text-xl text-secondary text-left md:text-left mb-14">
+            <p className="text-xl text-secondary text-left md:text-center mb-14">
                 {description}
             </p>
           </div>

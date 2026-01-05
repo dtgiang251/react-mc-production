@@ -116,7 +116,8 @@ function RenderMedia({
           ],
         },
         options: {
-          autoplay: false,
+          autoplay: true,
+          muted: true, // Thêm muted để tăng khả năng autoplay trên trình duyệt hiện đại
           controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
         },
       };

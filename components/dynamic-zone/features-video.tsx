@@ -2,6 +2,17 @@
 import React, { useRef, useState } from "react";
 import { Container } from "../container";
 import { strapiImage } from '@/lib/strapi/strapiImage';
+import dynamic from 'next/dynamic';
+import "plyr-react/plyr.css";
+
+// Dynamic import Plyr với ssr: false
+const Plyr = dynamic(() => import('plyr-react'), { ssr: false, loading: () => <div>Loading video...</div> });
+
+// Helper to get YouTube video ID from URL
+const getYoutubeVideoId = (url: string) => {
+  const match = url.match(/v=([^&]+)/);
+  return match ? match[1] : "";
+};
 
 // Tách phần render video thành 1 hàm riêng
 function RenderVideo({
@@ -50,6 +61,7 @@ function RenderVideo({
 function RenderMedia({
   video,
   image,
+  youtube_link,
   videoRef,
   paused,
   handlePause,
@@ -57,6 +69,7 @@ function RenderMedia({
 }: {
   video?: { url?: string };
   image?: { url?: string };
+  youtube_link?: string;
   videoRef: React.RefObject<HTMLVideoElement>;
   paused: boolean;
   handlePause: () => void;
@@ -88,6 +101,33 @@ function RenderMedia({
     );
   }
 
+  // ✅ Nếu có youtube_link thì render video youtube
+  if (youtube_link) {
+    const videoId = getYoutubeVideoId(youtube_link);
+    if (videoId) {
+      const plyrProps = {
+        source: {
+          type: "video" as const,
+          sources: [
+            {
+              src: videoId,
+              provider: "youtube" as const,
+            },
+          ],
+        },
+        options: {
+          autoplay: false,
+          controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+        },
+      };
+      return (
+        <div className="relative w-full max-w-[570px] aspect-video">
+          <Plyr {...plyrProps} />
+        </div>
+      );
+    }
+  }
+
   return null;
 }
 
@@ -99,7 +139,8 @@ export const FeaturesVideo = ({
   features_title,
   features,
   video,
-  image
+  image,
+  youtube_link
 }: {
   layout: string;
   title: string;
@@ -108,6 +149,7 @@ export const FeaturesVideo = ({
   features: { title: string; description: string }[];
   video: { url: string };
   image: { url: string };
+  youtube_link?: string;
 }) => {
   
   // Chia features thành 2 cột
@@ -181,6 +223,7 @@ export const FeaturesVideo = ({
             <RenderMedia
               video={video}
               image={image}
+              youtube_link={youtube_link}
               videoRef={videoRef}
               paused={paused}
               handlePause={handlePause}
@@ -226,6 +269,7 @@ export const FeaturesVideo = ({
             <RenderMedia
               video={video}
               image={image}
+              youtube_link={youtube_link}
               videoRef={videoRef}
               paused={paused}
               handlePause={handlePause}
@@ -245,6 +289,7 @@ export const FeaturesVideo = ({
                     <RenderMedia
                       video={video}
                       image={image}
+                      youtube_link={youtube_link}
                       videoRef={videoRef}
                       paused={paused}
                       handlePause={handlePause}
@@ -310,6 +355,7 @@ export const FeaturesVideo = ({
                     <RenderMedia
                       video={video}
                       image={image}
+                      youtube_link={youtube_link}
                       videoRef={videoRef}
                       paused={paused}
                       handlePause={handlePause}
@@ -353,6 +399,7 @@ export const FeaturesVideo = ({
                     <RenderMedia
                       video={video}
                       image={image}
+                      youtube_link={youtube_link}
                       videoRef={videoRef}
                       paused={paused}
                       handlePause={handlePause}

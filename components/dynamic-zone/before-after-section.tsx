@@ -36,7 +36,7 @@ function RenderVideo({
   handlePlay: () => void;
 }) {
   return (
-    <div className="relative w-full max-w-[570px]">
+    <div className="relative w-full max-w-[750px]">
       <video
         ref={videoRef}
         src={strapiImage(videoUrl)}

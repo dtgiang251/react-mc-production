@@ -174,7 +174,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
     {layout === "Text Left - 2 Images Right - Black" && (
     <section className="bg-secondary py-20 md:py-25">
     <Container>
-      <div className="md:flex gap-[115px] md:gap-[40px] lg:gap-[100px] md:flex-row items-center flex-row-reverse">
+      <div className="md:flex gap-[115px] md:gap-[40px] lg:gap-[100px] items-center md:flex-row-reverse">
         
         <div className="relative pl-[26px] md:pl-[46px] md:w-6/12 lg:w-7/12 mb-15">
           {main_image?.url && (

@@ -52,7 +52,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
             <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold mb-5 text-secondary">
               {title}
             </h2>
-            <p className="font-normal text-gray-500 leading-relaxed text-base">{description}</p>
+            <p className="font-normal text-gray-500 leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: description }} />
             
             {features_title && (
             <h3 className="font-semibold text-xl text-secondary/60 mt-6 mb-6">{features_title}</h3>
@@ -88,7 +88,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
             <h2 className="w-full md:w-[90%] text-[34px] leading-[40px] md:text-5xl md:leading-[55px]font-inter font-bold mb-5 lg:mb-8 text-secondary">
               {title}
             </h2>
-            <p className="font-inter font-normal text-secondary leading-relaxed text-base opacity-[.6]">{description}</p>
+            <p className="font-inter font-normal text-secondary leading-relaxed text-base opacity-[.6]" dangerouslySetInnerHTML={{ __html: description }} />
           </div>
 
          
@@ -129,7 +129,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
           </h2>
           <div className="md:flex gap-[40px] md:gap-[40px] lg:gap-[100px] md:flex-row items-center">
             <div className="flex flex-col gap-[26px] md:w-6/12 mb-10 md:mb-0">
-              <p className="font-normal text-secondary leading-relaxed text-base">{description}</p>
+              <p className="font-normal text-secondary leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: description }} />
               
               {features_title && (
               <p className="font-normal text-base text-secondary">{features_title}</p>
@@ -217,7 +217,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
           <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold mb-5 text-primary">
             {title}
           </h2>
-          <p className="font-normal text-white leading-relaxed text-base">{description}</p>
+          <p className="font-normal text-white leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: description }} />
           
           {features_title && (
           <h3 className="font-semibold text-xl text-white mt-6 mb-6">{features_title}</h3>
@@ -252,7 +252,7 @@ export const ImagesAndTextSection = ({ layout = "Text Right - 3 Images Left", ti
       <h2 className="text-[34px] leading-[40px] md:text-5xl md:leading-[55px] font-bold mb-5 text-secondary text-center">
         {title}
       </h2>
-      <p className="max-w-[800px] mx-auto font-normal text-secondary text-center leading-relaxed text-base">{description}</p>
+      <p className="max-w-[800px] mx-auto font-normal text-secondary text-center leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: description }} />
 
       {features_title && (
         <h3 className="font-semibold text-xl text-white mt-6 mb-6">{features_title}</h3>
